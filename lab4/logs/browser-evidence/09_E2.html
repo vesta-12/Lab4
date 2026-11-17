@@ -1,0 +1,27 @@
+<!doctype html><meta charset="utf-8"><title>E2 - replica falls behind and catches up</title><style>body{font:16px Arial,sans-serif;margin:24px;color:#111;max-width:1200px}h1{font-size:23px;margin:0 0 10px}p{margin:7px 0 14px}pre{font:14px/1.32 monospace;white-space:pre-wrap;overflow-wrap:anywhere}</style><h1>E2 - replica falls behind and catches up</h1><p>Recorded evidence from the real Flask/Docker run on 17 November 2026. This is an archived log excerpt, not a live terminal.</p><p>Original source: logs/E2-replica-behind.log. Timestamps below are UTC (Almaty = UTC+5).</p><pre>2026-11-17T09:00:31.525644+00:00
+docker compose exec -T redis-replica redis-cli REPLICAOF 127.0.0.1 1
+OK
+
+2026-11-17T09:00:31.536944+00:00
+{
+  &quot;event&quot;: &quot;detached_values&quot;,
+  &quot;primary&quot;: 110,
+  &quot;replica&quot;: 100,
+  &quot;difference&quot;: 10
+}
+
+2026-11-17T09:00:31.612981+00:00
+docker compose exec -T redis-replica redis-cli REPLICAOF redis-primary 6379
+OK
+
+2026-11-17T09:00:31.614638+00:00
+{
+  &quot;event&quot;: &quot;result&quot;,
+  &quot;baseline&quot;: 100,
+  &quot;primary_detached&quot;: 110,
+  &quot;replica_detached&quot;: 100,
+  &quot;difference&quot;: 10,
+  &quot;recovery_seconds&quot;: 0.077514,
+  &quot;poll_interval_seconds&quot;: 0.05,
+  &quot;recovered_value&quot;: 110
+}</pre>

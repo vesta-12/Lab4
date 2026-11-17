@@ -1,0 +1,15 @@
+<!doctype html><meta charset="utf-8"><title>Replication status - redis-primary</title><style>body{font:16px Arial,sans-serif;margin:24px;color:#111;max-width:1200px}h1{font-size:23px;margin:0 0 10px}p{margin:7px 0 14px}pre{font:14px/1.32 monospace;white-space:pre-wrap;overflow-wrap:anywhere}</style><h1>Replication status - redis-primary</h1><p>Recorded evidence from the real Flask/Docker run on 17 November 2026. This is an archived log excerpt, not a live terminal.</p><p>Original source: logs/replication-status.log. Timestamps below are UTC (Almaty = UTC+5).</p><pre>2026-11-17T09:00:30.995058+00:00
+docker compose exec -T redis-primary redis-cli INFO replication
+# Replication
+role:master
+connected_slaves:1
+slave0:ip=172.18.0.4,port=6379,state=online,offset=1064,lag=0
+master_failover_state:no-failover
+master_replid:932b9026b0bb60d5ebb746a836df66ec1d84147a
+master_replid2:0000000000000000000000000000000000000000
+master_repl_offset:1064
+second_repl_offset:-1
+repl_backlog_active:1
+repl_backlog_size:1048576
+repl_backlog_first_byte_offset:1
+repl_backlog_histlen:1064</pre>

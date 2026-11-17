@@ -1,0 +1,18 @@
+{"timestamp": "2026-11-17T09:00:31.614853+00:00", "event": "section", "title": "E3-read-own-write.log", "evidence": "LIVE HTTP and Docker; no mocks", "counter_key": "lab4:counter"}
+{"timestamp": "2026-11-17T09:00:31.615815+00:00", "event": "synchronized", "primary": "redis-primary", "replica": "redis-replica", "primary_value": 110, "replica_value": 110}
+{"timestamp": "2026-11-17T09:00:31.686283+00:00", "event": "command", "command": "docker compose exec -T redis-replica redis-cli REPLICAOF 127.0.0.1 1", "returncode": 0, "stdout": "OK\n", "stderr": "", "seconds": 0.07026}
+{"timestamp": "2026-11-17T09:00:31.688232+00:00", "event": "http", "method": "POST", "url": "http://127.0.0.1:5002/counter/increment", "status": 200, "body": {"source": "primary", "value": 111}}
+{"timestamp": "2026-11-17T09:00:31.689371+00:00", "event": "http", "method": "GET", "url": "http://127.0.0.1:5002/counter?from=primary", "status": 200, "body": {"source": "primary", "value": 111}}
+{"timestamp": "2026-11-17T09:00:31.690433+00:00", "event": "http", "method": "GET", "url": "http://127.0.0.1:5002/counter?from=replica", "status": 200, "body": {"source": "replica", "value": 110}}
+{"timestamp": "2026-11-17T09:00:31.690460+00:00", "event": "read_your_write", "write": 111, "primary": 111, "replica": 110}
+{"timestamp": "2026-11-17T09:00:31.691387+00:00", "event": "http", "method": "POST", "url": "http://127.0.0.1:5002/counter/increment", "status": 200, "body": {"source": "primary", "value": 112}}
+{"timestamp": "2026-11-17T09:00:31.692241+00:00", "event": "http", "method": "GET", "url": "http://127.0.0.1:5002/counter?from=primary", "status": 200, "body": {"source": "primary", "value": 112}}
+{"timestamp": "2026-11-17T09:00:31.693246+00:00", "event": "http", "method": "GET", "url": "http://127.0.0.1:5002/counter?from=replica", "status": 200, "body": {"source": "replica", "value": 110}}
+{"timestamp": "2026-11-17T09:00:31.693275+00:00", "event": "read_your_write", "write": 112, "primary": 112, "replica": 110}
+{"timestamp": "2026-11-17T09:00:31.694242+00:00", "event": "http", "method": "POST", "url": "http://127.0.0.1:5002/counter/increment", "status": 200, "body": {"source": "primary", "value": 113}}
+{"timestamp": "2026-11-17T09:00:31.695158+00:00", "event": "http", "method": "GET", "url": "http://127.0.0.1:5002/counter?from=primary", "status": 200, "body": {"source": "primary", "value": 113}}
+{"timestamp": "2026-11-17T09:00:31.696023+00:00", "event": "http", "method": "GET", "url": "http://127.0.0.1:5002/counter?from=replica", "status": 200, "body": {"source": "replica", "value": 110}}
+{"timestamp": "2026-11-17T09:00:31.696045+00:00", "event": "read_your_write", "write": 113, "primary": 113, "replica": 110}
+{"timestamp": "2026-11-17T09:00:31.780847+00:00", "event": "command", "command": "docker compose exec -T redis-replica redis-cli REPLICAOF redis-primary 6379", "returncode": 0, "stdout": "OK\n", "stderr": "", "seconds": 0.084776}
+{"timestamp": "2026-11-17T09:00:31.782861+00:00", "event": "synchronized", "primary": "redis-primary", "replica": "redis-replica", "primary_value": 113, "replica_value": 113}
+{"timestamp": "2026-11-17T09:00:31.782899+00:00", "event": "result", "baseline": 110, "operations": [{"write": 111, "primary": 111, "replica": 110}, {"write": 112, "primary": 112, "replica": 110}, {"write": 113, "primary": 113, "replica": 110}], "restored": true}

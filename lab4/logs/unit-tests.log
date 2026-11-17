@@ -1,0 +1,31 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.9.6, pytest-8.4.2, pluggy-1.6.0 -- /Users/sofiyaserbina/Lab3_Docker_Kubernetes_Lab4/lab4/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /Users/sofiyaserbina/Lab3_Docker_Kubernetes_Lab4
+collecting ... collected 23 items
+
+lab4/tests/test_api.py::test_legacy_contract PASSED                      [  4%]
+lab4/tests/test_api.py::test_invalid_file_json[body0] PASSED             [  8%]
+lab4/tests/test_api.py::test_invalid_file_json[body1] PASSED             [ 13%]
+lab4/tests/test_api.py::test_invalid_file_json[None] PASSED              [ 17%]
+lab4/tests/test_api.py::test_invalid_file_json[body3] PASSED             [ 21%]
+lab4/tests/test_api.py::test_invalid_file_json[body4] PASSED             [ 26%]
+lab4/tests/test_api.py::test_invalid_file_json[body5] PASSED             [ 30%]
+lab4/tests/test_api.py::test_malformed_json PASSED                       [ 34%]
+lab4/tests/test_api.py::test_upload_and_read PASSED                      [ 39%]
+lab4/tests/test_api.py::test_bucket_creation_and_race PASSED             [ 43%]
+lab4/tests/test_api.py::test_bucket_permission_not_hidden[403] PASSED    [ 47%]
+lab4/tests/test_api.py::test_bucket_permission_not_hidden[AccessDenied] PASSED [ 52%]
+lab4/tests/test_api.py::test_utf8_byte_limit PASSED                      [ 56%]
+lab4/tests/test_api.py::test_missing_and_invalid_file PASSED             [ 60%]
+lab4/tests/test_api.py::test_storage_outage PASSED                       [ 65%]
+lab4/tests/test_api.py::test_counter_routing PASSED                      [ 69%]
+lab4/tests/test_api.py::test_counter_invalid_source[from=] PASSED        [ 73%]
+lab4/tests/test_api.py::test_counter_invalid_source[from=other] PASSED   [ 78%]
+lab4/tests/test_api.py::test_counter_invalid_source[from=primary&from=replica] PASSED [ 82%]
+lab4/tests/test_api.py::test_redis_outages PASSED                        [ 86%]
+lab4/tests/test_api.py::test_redis_readonly_and_bad_integer PASSED       [ 91%]
+lab4/tests/test_api.py::test_missing_credentials PASSED                  [ 95%]
+lab4/tests/test_api.py::test_environment_ports PASSED                    [100%]
+
+============================== 23 passed in 0.24s ==============================

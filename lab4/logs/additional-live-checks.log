@@ -1,0 +1,9 @@
+{"timestamp": "2026-11-17T09:21:55.376490+00:00", "test": "ASCII exact limit", "file_id": "2315ecb5-c591-46ef-9026-e9afdca947e1", "post_status": 201, "get_status": 200, "utf8_bytes": 65536, "sha256": "1f8745f0d2d1387ec1af2211a3cf417b2e9e885e853472649c1d979d0e9370e3", "status": "PASS"}
+{"timestamp": "2026-11-17T09:21:55.413759+00:00", "test": "Unicode exact limit", "file_id": "fef523e5-160b-4c5c-a333-243c53799054", "post_status": 201, "get_status": 200, "utf8_bytes": 65536, "sha256": "80ad92d4f363d1af78eed07669eecdbb4410e28d38875188de8feeb30b98d6d9", "status": "PASS"}
+{"timestamp": "2026-11-17T09:21:55.415094+00:00", "test": "JSON request above 512 KiB", "http_status": 400, "response": {"error": "request body too large"}, "status": "PASS"}
+{"timestamp": "2026-11-17T09:21:56.069223+00:00", "command": "docker compose stop redis-replica", "returncode": 0, "stdout": "", "stderr": " Container lab4-redis-replica-1 Stopping \n Container lab4-redis-replica-1 Stopped \n"}
+{"timestamp": "2026-11-17T09:21:56.071477+00:00", "test": "Replica stopped", "http_status": 503, "response": {"error": "redis replica unavailable"}, "status": "PASS"}
+{"timestamp": "2026-11-17T09:21:56.072907+00:00", "test": "Primary remains readable", "http_status": 200, "response": {"source": "primary", "value": 114}, "status": "PASS"}
+{"timestamp": "2026-11-17T09:21:56.792973+00:00", "command": "docker compose start redis-replica", "returncode": 0, "stdout": "", "stderr": " Container lab4-redis-primary-1 Waiting \n Container lab4-redis-primary-1 Healthy \n Container lab4-redis-replica-1 Starting \n Container lab4-redis-replica-1 Started \n"}
+{"timestamp": "2026-11-17T09:22:02.453850+00:00", "test": "Replica restored", "role": "slave", "link": "up", "value": 114, "status": "PASS"}
+{"timestamp": "2026-11-17T09:22:02.454780+00:00", "all_checks": "PASS", "counter_unchanged": 114}

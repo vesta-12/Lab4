@@ -1,0 +1,19 @@
+<!doctype html><meta charset="utf-8"><title>E1 - 100 sequential writes and reads</title><style>body{font:16px Arial,sans-serif;margin:24px;color:#111;max-width:1200px}h1{font-size:23px;margin:0 0 10px}p{margin:7px 0 14px}pre{font:14px/1.32 monospace;white-space:pre-wrap;overflow-wrap:anywhere}</style><h1>E1 - 100 sequential writes and reads</h1><p>Recorded evidence from the real Flask/Docker run on 17 November 2026. This is an archived log excerpt, not a live terminal.</p><p>Original source: logs/E1-normal.log. Timestamps below are UTC (Almaty = UTC+5).</p><pre>iteration   write   primary   replica   stale
+        1       1         1         1   False
+        2       2         2         2   False
+        3       3         3         3   False
+       98      98        98        98   False
+       99      99        99        99   False
+      100     100       100       100   False
+
+Rows 4-97 are in the full original log (all 100 iterations).
+
+2026-11-17T09:00:31.447624+00:00
+{
+  &quot;event&quot;: &quot;result&quot;,
+  &quot;iterations&quot;: 100,
+  &quot;baseline&quot;: 0,
+  &quot;final&quot;: 100,
+  &quot;stale_reads&quot;: 0,
+  &quot;mismatches&quot;: []
+}</pre>
