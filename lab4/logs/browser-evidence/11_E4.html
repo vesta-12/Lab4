@@ -1,0 +1,26 @@
+<!doctype html><meta charset="utf-8"><title>E4 - manual failover and split-brain</title><style>body{font:16px Arial,sans-serif;margin:24px;color:#111;max-width:1200px}h1{font-size:23px;margin:0 0 10px}p{margin:7px 0 14px}pre{font:14px/1.32 monospace;white-space:pre-wrap;overflow-wrap:anywhere}</style><h1>E4 - manual failover and split-brain</h1><p>Recorded evidence from the real Flask/Docker run on 17 November 2026. This is an archived log excerpt, not a live terminal.</p><p>Original source: logs/E4-manual-failover.log. Timestamps below are UTC (Almaty = UTC+5).</p><pre>GET http://127.0.0.1:5002/counter?from=replica -&gt; HTTP 200 {&quot;source&quot;: &quot;replica&quot;, &quot;value&quot;: 113}
+GET http://127.0.0.1:5002/counter?from=primary -&gt; HTTP 503 {&quot;error&quot;: &quot;redis primary unavailable&quot;}
+POST http://127.0.0.1:5002/counter/increment -&gt; HTTP 503 {&quot;error&quot;: &quot;redis primary unavailable&quot;}
+POST http://127.0.0.1:5002/counter/increment -&gt; HTTP 200 {&quot;source&quot;: &quot;primary&quot;, &quot;value&quot;: 114}
+GET http://127.0.0.1:5002/counter?from=primary -&gt; HTTP 200 {&quot;source&quot;: &quot;primary&quot;, &quot;value&quot;: 114}
+GET http://127.0.0.1:5002/counter?from=primary -&gt; HTTP 200 {&quot;source&quot;: &quot;primary&quot;, &quot;value&quot;: 114}
+
+2026-11-17T09:00:33.762975+00:00
+{
+  &quot;event&quot;: &quot;split_brain_observed&quot;,
+  &quot;replica_read_during_failure&quot;: 113,
+  &quot;write_during_failure&quot;: 503,
+  &quot;redirected_primary_port&quot;: 6380,
+  &quot;write_after_redirect&quot;: 200,
+  &quot;master_count_on_return&quot;: 2,
+  &quot;roles_on_return&quot;: {
+    &quot;redis-primary&quot;: &quot;master&quot;,
+    &quot;redis-replica&quot;: &quot;master&quot;
+  },
+  &quot;values_on_return&quot;: {
+    &quot;redis-primary&quot;: 113,
+    &quot;redis-replica&quot;: 114
+  }
+}
+
+Final recovery: redis-primary master; redis-replica slave; link up; both counter values = 114</pre>

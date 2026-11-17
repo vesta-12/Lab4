@@ -1,0 +1,24 @@
+<!doctype html><meta charset="utf-8"><title>Replication status - redis-replica</title><style>body{font:16px Arial,sans-serif;margin:24px;color:#111;max-width:1200px}h1{font-size:23px;margin:0 0 10px}p{margin:7px 0 14px}pre{font:14px/1.32 monospace;white-space:pre-wrap;overflow-wrap:anywhere}</style><h1>Replication status - redis-replica</h1><p>Recorded evidence from the real Flask/Docker run on 17 November 2026. This is an archived log excerpt, not a live terminal.</p><p>Original source: logs/replication-status.log. Timestamps below are UTC (Almaty = UTC+5).</p><pre>2026-11-17T09:00:31.151693+00:00
+docker compose exec -T redis-replica redis-cli INFO replication
+# Replication
+role:slave
+master_host:redis-primary
+master_port:6379
+master_link_status:up
+master_last_io_seconds_ago:2
+master_sync_in_progress:0
+slave_read_repl_offset:1064
+slave_repl_offset:1064
+slave_priority:100
+slave_read_only:1
+replica_announced:1
+connected_slaves:0
+master_failover_state:no-failover
+master_replid:932b9026b0bb60d5ebb746a836df66ec1d84147a
+master_replid2:0000000000000000000000000000000000000000
+master_repl_offset:1064
+second_repl_offset:-1
+repl_backlog_active:1
+repl_backlog_size:1048576
+repl_backlog_first_byte_offset:1
+repl_backlog_histlen:1064</pre>

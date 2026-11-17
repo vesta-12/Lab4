@@ -1,0 +1,21 @@
+<!doctype html><meta charset="utf-8"><title>E3 - reading your own write</title><style>body{font:16px Arial,sans-serif;margin:24px;color:#111;max-width:1200px}h1{font-size:23px;margin:0 0 10px}p{margin:7px 0 14px}pre{font:14px/1.32 monospace;white-space:pre-wrap;overflow-wrap:anywhere}</style><h1>E3 - reading your own write</h1><p>Recorded evidence from the real Flask/Docker run on 17 November 2026. This is an archived log excerpt, not a live terminal.</p><p>Original source: logs/E3-read-own-write.log. Timestamps below are UTC (Almaty = UTC+5).</p><pre>2026-11-17T09:00:31.686283+00:00
+docker compose exec -T redis-replica redis-cli REPLICAOF 127.0.0.1 1
+OK
+
+write   primary   replica
+111     111       110
+112     112       110
+113     113       110
+
+2026-11-17T09:00:31.780847+00:00
+docker compose exec -T redis-replica redis-cli REPLICAOF redis-primary 6379
+OK
+
+2026-11-17T09:00:31.782861+00:00
+{
+  &quot;event&quot;: &quot;synchronized&quot;,
+  &quot;primary&quot;: &quot;redis-primary&quot;,
+  &quot;replica&quot;: &quot;redis-replica&quot;,
+  &quot;primary_value&quot;: 113,
+  &quot;replica_value&quot;: 113
+}</pre>

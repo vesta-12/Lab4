@@ -1,0 +1,47 @@
+Completed by fourth-year student
+
+"Computing and Digital Technologies"
+
+Sofiya Serbina
+
+Laboratory Work 4 — Data Storage and Replication
+
+1. Objective and Implementation
+
+I extended the Flask REST API with persistent object storage and a replicated counter. Flask runs locally on Python 3.9.6 at port 5002; RustFS 1.0.0 and Redis 7 run in Docker. POST /files stores UTF-8 text through boto3 and returns a UUID (201); GET /files/<file_id> returns the original text (200) or 404. Objects are kept in lab4-files on the existing lab4_s3-data volume, without saving user files on the Flask disk.
+
+POST /counter/increment uses INCR only on the configured primary. GET /counter?from=primary or from=replica reads the chosen Redis node. JSON validation, a 65,536-byte text limit and storage/Redis failures produce 400 or 503. Environment variables configure service addresses. The existing /time and /echo contracts remain available.
+
+2. Experimental Results
+
+Experiment | Procedure | Actual Observations
+E1 | 100 writes and reads | 0 stale reads / 100; primary 0 to 100. All primary reads matched the write.
+E2 | Replica detached and restored | Primary 110; replica 100; gap 10. After restoring REPLICAOF, both reached 110 in 0.077514 s.
+E3 | Read your own write | Write/primary/replica: 111/111/110; 112/112/110; 113/113/110. Replication restored.
+E4 | Manual failover | Replica read 113 (200); primary writes 503. Promotion and port 6380 enabled write 114 (200). Returning old node: 2 masters, values 113 and 114. Restored one master, both 114.
+
+Measured on 17 November 2026, 09:00 UTC (14:00 Almaty). E2 uses a monotonic clock from the restore command to link-up/equal-value detection, including command overhead; polling interval: 50 ms.
+
+Evidence: logs/results.json and full E1-E4 logs; 23 isolated tests passed. Real storage checks covered 201/200/400/404/503, S3 HEAD/LIST, Flask restart and RustFS force recreation. The same 45-byte object survived both restarts; its UUID is b536f0e7-46e0-42b2-8b89-2d1e093d0c85.
+
+3. Reflection Questions
+
+1. Why must files not be stored on a container's disk, and how is object storage better?
+
+A container's writable layer can disappear when it is replaced, and separate application instances do not share that layer. In this implementation Flask sends files to RustFS by key, so data is independent of the application process. The persistent Docker volume also preserved the RustFS object when its container was force-recreated. This local volume is still one local failure domain; object storage here does not imply off-machine backup.
+
+2. What are replication lag and eventual consistency? What did you see in E1 and E2?
+
+Replication lag is the delay between a primary update and its application on a replica. Eventual consistency means the copies converge after communication resumes and writes stop. E1 had 0 stale reads because local replication completed before the sequential replica GETs. E2 deliberately broke the link: primary 110 versus replica 100. After reconnection, the replica reached 110 in the measured 0.077514 s. Zero stale reads in E1 did not prove synchronous replication.
+
+3. When is reading from a replica acceptable, and when is it not?
+
+A replica is acceptable for a dashboard counter or aggregate analytics where brief staleness is tolerable. It is unsuitable for immediately confirming an update or making an inventory/payment decision that requires current data. In E3, the primary reflected each successful write (111, 112, 113), but the disconnected replica kept returning 110. For this sequential read-your-write requirement I read the authoritative primary after the write.
+
+4. What was manual during failure, what happened on return, and how does automatic failover compare with MongoDB election?
+
+I promoted the replica with REPLICAOF NO ONE and restarted Flask with REDIS_PRIMARY_PORT=6380. The old node returned as a master at 113 while the promoted master held 114: two independent writable masters risk divergent data (split-brain). I first made the old node a replica of the new one, waited for 114, then safely restored the original roles. No S3 volume was removed.
+
+This Compose setup performs no election. Redis Sentinel can monitor failures, coordinate promotion and publish the new primary address to compatible clients. MongoDB replica sets elect a primary through voting members with a majority, and drivers discover the new primary. Correctly configured automatic failover removes these operator steps; it still requires suitable topology and does not guarantee that every acknowledged asynchronous write survives.
+
+References: Redis documentation, "Redis replication" and "High availability with Redis Sentinel"; MongoDB Manual, "Replica Set Elections". Direct links are provided in README.md. All table values above come from the accompanying real-run logs.

@@ -1,0 +1,19 @@
+{"timestamp": "2026-11-17T09:00:31.447847+00:00", "event": "section", "title": "E2-replica-behind.log", "evidence": "LIVE HTTP and Docker; no mocks", "counter_key": "lab4:counter"}
+{"timestamp": "2026-11-17T09:00:31.449205+00:00", "event": "synchronized", "primary": "redis-primary", "replica": "redis-replica", "primary_value": 100, "replica_value": 100}
+{"timestamp": "2026-11-17T09:00:31.525644+00:00", "event": "command", "command": "docker compose exec -T redis-replica redis-cli REPLICAOF 127.0.0.1 1", "returncode": 0, "stdout": "OK\n", "stderr": "", "seconds": 0.076221}
+{"timestamp": "2026-11-17T09:00:31.527723+00:00", "event": "http", "method": "POST", "url": "http://127.0.0.1:5002/counter/increment", "status": 200, "body": {"source": "primary", "value": 101}}
+{"timestamp": "2026-11-17T09:00:31.528636+00:00", "event": "http", "method": "POST", "url": "http://127.0.0.1:5002/counter/increment", "status": 200, "body": {"source": "primary", "value": 102}}
+{"timestamp": "2026-11-17T09:00:31.529483+00:00", "event": "http", "method": "POST", "url": "http://127.0.0.1:5002/counter/increment", "status": 200, "body": {"source": "primary", "value": 103}}
+{"timestamp": "2026-11-17T09:00:31.530319+00:00", "event": "http", "method": "POST", "url": "http://127.0.0.1:5002/counter/increment", "status": 200, "body": {"source": "primary", "value": 104}}
+{"timestamp": "2026-11-17T09:00:31.531260+00:00", "event": "http", "method": "POST", "url": "http://127.0.0.1:5002/counter/increment", "status": 200, "body": {"source": "primary", "value": 105}}
+{"timestamp": "2026-11-17T09:00:31.532147+00:00", "event": "http", "method": "POST", "url": "http://127.0.0.1:5002/counter/increment", "status": 200, "body": {"source": "primary", "value": 106}}
+{"timestamp": "2026-11-17T09:00:31.533048+00:00", "event": "http", "method": "POST", "url": "http://127.0.0.1:5002/counter/increment", "status": 200, "body": {"source": "primary", "value": 107}}
+{"timestamp": "2026-11-17T09:00:31.533839+00:00", "event": "http", "method": "POST", "url": "http://127.0.0.1:5002/counter/increment", "status": 200, "body": {"source": "primary", "value": 108}}
+{"timestamp": "2026-11-17T09:00:31.534613+00:00", "event": "http", "method": "POST", "url": "http://127.0.0.1:5002/counter/increment", "status": 200, "body": {"source": "primary", "value": 109}}
+{"timestamp": "2026-11-17T09:00:31.535361+00:00", "event": "http", "method": "POST", "url": "http://127.0.0.1:5002/counter/increment", "status": 200, "body": {"source": "primary", "value": 110}}
+{"timestamp": "2026-11-17T09:00:31.536110+00:00", "event": "http", "method": "GET", "url": "http://127.0.0.1:5002/counter?from=primary", "status": 200, "body": {"source": "primary", "value": 110}}
+{"timestamp": "2026-11-17T09:00:31.536917+00:00", "event": "http", "method": "GET", "url": "http://127.0.0.1:5002/counter?from=replica", "status": 200, "body": {"source": "replica", "value": 100}}
+{"timestamp": "2026-11-17T09:00:31.536944+00:00", "event": "detached_values", "primary": 110, "replica": 100, "difference": 10}
+{"timestamp": "2026-11-17T09:00:31.612981+00:00", "event": "command", "command": "docker compose exec -T redis-replica redis-cli REPLICAOF redis-primary 6379", "returncode": 0, "stdout": "OK\n", "stderr": "", "seconds": 0.076009}
+{"timestamp": "2026-11-17T09:00:31.614444+00:00", "event": "synchronized", "primary": "redis-primary", "replica": "redis-replica", "primary_value": 110, "replica_value": 110}
+{"timestamp": "2026-11-17T09:00:31.614638+00:00", "event": "result", "baseline": 100, "primary_detached": 110, "replica_detached": 100, "difference": 10, "recovery_seconds": 0.077514, "poll_interval_seconds": 0.05, "recovered_value": 110}

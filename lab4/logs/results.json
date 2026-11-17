@@ -1,0 +1,70 @@
+{
+  "storage": {
+    "file_id": "b536f0e7-46e0-42b2-8b89-2d1e093d0c85",
+    "text": "Hello from Lab 4 - persistent RustFS evidence",
+    "s3_volume": "lab4_s3-data",
+    "create": 201,
+    "read": 200,
+    "missing": 404,
+    "invalid": 400,
+    "outage": 503,
+    "flask_restart": "PASS",
+    "rustfs_force_recreate": "PASS"
+  },
+  "E1": {
+    "iterations": 100,
+    "baseline": 0,
+    "final": 100,
+    "stale_reads": 0,
+    "mismatches": []
+  },
+  "E2": {
+    "baseline": 100,
+    "primary_detached": 110,
+    "replica_detached": 100,
+    "difference": 10,
+    "recovery_seconds": 0.077514,
+    "poll_interval_seconds": 0.05,
+    "recovered_value": 110
+  },
+  "E3": {
+    "baseline": 110,
+    "operations": [
+      {
+        "write": 111,
+        "primary": 111,
+        "replica": 110
+      },
+      {
+        "write": 112,
+        "primary": 112,
+        "replica": 110
+      },
+      {
+        "write": 113,
+        "primary": 113,
+        "replica": 110
+      }
+    ],
+    "restored": true
+  },
+  "E4": {
+    "replica_read_during_failure": 113,
+    "write_during_failure": 503,
+    "redirected_primary_port": 6380,
+    "write_after_redirect": 200,
+    "master_count_on_return": 2,
+    "roles_on_return": {
+      "redis-primary": "master",
+      "redis-replica": "master"
+    },
+    "values_on_return": {
+      "redis-primary": 113,
+      "redis-replica": 114
+    },
+    "restored_value": 114,
+    "restored_topology": "redis-primary master; redis-replica slave; link up"
+  },
+  "completed_at_utc": "2026-11-17T09:00:39.711629+00:00",
+  "evidence_type": "Live Docker containers and Flask HTTP API; no mocks"
+}

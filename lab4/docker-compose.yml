@@ -1,0 +1,49 @@
+# Keep the existing project/volume names; never run `down -v` for this lab.
+name: lab4
+services:
+  s3:
+    image: rustfs/rustfs:1.0.0
+    environment:
+      RUSTFS_VOLUMES: /data
+      RUSTFS_ACCESS_KEY: ${RUSTFS_ACCESS_KEY:?Set RUSTFS_ACCESS_KEY in .env}
+      RUSTFS_SECRET_KEY: ${RUSTFS_SECRET_KEY:?Set RUSTFS_SECRET_KEY in .env}
+      RUSTFS_CONSOLE_ENABLE: "true"
+    ports:
+      - "127.0.0.1:9000:9000"
+      - "127.0.0.1:9001:9001"
+    volumes:
+      - s3-data:/data
+
+  redis-primary:
+    image: redis:7
+    command: ["redis-server", "--appendonly", "yes"]
+    ports:
+      - "127.0.0.1:6379:6379"
+    volumes:
+      - redis-primary-data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 2s
+      timeout: 2s
+      retries: 30
+
+  redis-replica:
+    image: redis:7
+    command: ["redis-server", "--appendonly", "yes", "--replicaof", "redis-primary", "6379"]
+    ports:
+      - "127.0.0.1:6380:6379"
+    volumes:
+      - redis-replica-data:/data
+    depends_on:
+      redis-primary:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 2s
+      timeout: 2s
+      retries: 30
+
+volumes:
+  s3-data:
+  redis-primary-data:
+  redis-replica-data:

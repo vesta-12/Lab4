@@ -1,0 +1,114 @@
+STARTUP DIAGNOSIS - factual before/after evidence
+
+Before changes: the original correct lab4/app.py was copied to a task backup and inspected.
+It had only /time and /echo and app.run(host="0.0.0.0", port=5000).
+The other repository contained a separate file API implementation.
+At initial diagnosis lsof identified ControlCenter PID 1188 on port 5000; 5002 was free.
+Initial process inspection showed no Python/Flask listener. Historical HTML 404 process identity is unverified.
+No system service or unrelated process was terminated.
+
+Current checks below:
+
+$ date -u
+Tue Nov 17 09:20:51 UTC 2026
+
+Exit status: 0
+
+$ git remote -v
+origin	https://github.com/vesta-12/Lab3_Docker_Kubernetes.git (fetch)
+origin	https://github.com/vesta-12/Lab3_Docker_Kubernetes.git (push)
+
+Exit status: 0
+
+$ git branch --show-current
+lab4-storage-replication
+
+Exit status: 0
+
+$ git status --short --branch
+## lab4-storage-replication...origin/lab3-docker-kubernetes
+?? .gitignore
+?? lab4/
+
+Exit status: 0
+
+$ lsof -nP -iTCP:5000 -iTCP:5002 -sTCP:LISTEN
+COMMAND     PID          USER   FD   TYPE             DEVICE SIZE/OFF NODE NAME
+ControlCe  1188 sofiyaserbina   11u  IPv4 0x32af1c9a9ea8ced4      0t0  TCP *:5000 (LISTEN)
+ControlCe  1188 sofiyaserbina   12u  IPv6 0x53c05c0611784b47      0t0  TCP *:5000 (LISTEN)
+Python    84220 sofiyaserbina    4u  IPv4  0xb9c2a1ef46577f6      0t0  TCP 127.0.0.1:5002 (LISTEN)
+
+Exit status: 0
+
+$ /Users/sofiyaserbina/Lab3_Docker_Kubernetes_Lab4/lab4/.venv/bin/python -c import sys,app,os; print("Python:",sys.version); print("Executable:",sys.executable); print("Module:",app.__file__); print(app.app.url_map); print("FLASK_PORT default:",os.getenv("FLASK_PORT","5002")); print("Redis primary port:",app.app.extensions["lab4_nodes"]["primary"].connection_pool.connection_kwargs["port"]); print("Redis replica port:",app.app.extensions["lab4_nodes"]["replica"].connection_pool.connection_kwargs["port"])
+Python: 3.9.6 (default, Aug 25 2026, 21:26:21) 
+[Clang 21.0.0 (clang-2100.3.34.2)]
+Executable: /Users/sofiyaserbina/Lab3_Docker_Kubernetes_Lab4/lab4/.venv/bin/python
+Module: /Users/sofiyaserbina/Lab3_Docker_Kubernetes_Lab4/lab4/app.py
+Map([<Rule '/static/<filename>' (OPTIONS, HEAD, GET) -> static>,
+ <Rule '/time' (OPTIONS, HEAD, GET) -> get_time>,
+ <Rule '/echo' (OPTIONS, POST) -> echo>,
+ <Rule '/files' (OPTIONS, POST) -> upload_file>,
+ <Rule '/files/<file_id>' (OPTIONS, HEAD, GET) -> download_file>,
+ <Rule '/counter/increment' (OPTIONS, POST) -> increment>,
+ <Rule '/counter' (OPTIONS, HEAD, GET) -> counter>])
+FLASK_PORT default: 5002
+Redis primary port: 6379
+Redis replica port: 6380
+
+Exit status: 0
+
+$ curl -sS -i http://127.0.0.1:5002/files/b536f0e7-46e0-42b2-8b89-2d1e093d0c85
+HTTP/1.1 200 OK
+Server: Werkzeug/3.1.9 Python/3.9.6
+Date: Tue, 17 Nov 2026 09:20:52 GMT
+Content-Type: application/json
+Content-Length: 106
+Connection: close
+
+{"file_id":"b536f0e7-46e0-42b2-8b89-2d1e093d0c85","text":"Hello from Lab 4 - persistent RustFS evidence"}
+
+Exit status: 0
+
+$ docker compose ps
+NAME                   IMAGE                 COMMAND                  SERVICE         CREATED          STATUS                    PORTS
+lab4-redis-primary-1   redis:7               "docker-entrypoint.s…"   redis-primary   43 minutes ago   Up 20 minutes (healthy)   127.0.0.1:6379->6379/tcp
+lab4-redis-replica-1   redis:7               "docker-entrypoint.s…"   redis-replica   43 minutes ago   Up 43 minutes (healthy)   127.0.0.1:6380->6379/tcp
+lab4-s3-1              rustfs/rustfs:1.0.0   "/entrypoint.sh rust…"   s3              20 minutes ago   Up 20 minutes             127.0.0.1:9000-9001->9000-9001/tcp
+
+Exit status: 0
+
+$ docker inspect lab4-s3-1 --format {{json .Mounts}}
+[{"Type":"volume","Name":"lab4_s3-data","Source":"/var/lib/docker/volumes/lab4_s3-data/_data","Destination":"/data","Driver":"local","Mode":"rw","RW":true,"Propagation":""}]
+
+Exit status: 0
+
+$ docker compose exec -T redis-primary redis-cli INFO server
+# Server
+redis_version:7.4.12
+redis_git_sha1:00000000
+redis_git_dirty:0
+redis_build_id:6009b0a18fd35b30
+redis_mode:standalone
+os:Linux 7.0.14-linuxkit aarch64
+arch_bits:64
+monotonic_clock:POSIX clock_gettime
+multiplexing_api:epoll
+atomicvar_api:c11-builtin
+gcc_version:12.2.0
+process_id:1
+process_supervised:no
+run_id:a383f7c96afba88083f197859ec7b8ddb51f5a56
+tcp_port:6379
+server_time_usec:1794907252984188
+uptime_in_seconds:1219
+uptime_in_days:0
+hz:10
+configured_hz:10
+lru_clock:16522356
+executable:/data/redis-server
+config_file:
+io_threads_active:0
+listener0:name=tcp,bind=*,bind=-::*,port=6379
+
+Exit status: 0
