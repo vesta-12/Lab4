@@ -1,0 +1,9 @@
+
+lab4/.env
+lab4/.venv/
+lab4/__pycache__/
+
+**/__pycache__/
+**/.pytest_cache/
+lab4/logs/*.pid
+lab4/logs/*.lock
