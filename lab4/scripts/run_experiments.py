@@ -87,7 +87,7 @@ def wait_for(predicate, timeout=40):
     raise TimeoutError('Condition not met within {} seconds'.format(timeout))
 
 
-def start_api(port=6379, replica_port=6380):
+def start_api(port=6379, replica_port=6380, live=False):
     global PROCESS
     if PROCESS is not None:
         PROCESS.terminate()
@@ -96,7 +96,8 @@ def start_api(port=6379, replica_port=6380):
         assert sock.connect_ex(('127.0.0.1',5002)) != 0, 'Port 5002 occupied; no foreign process will be killed'
     env = dict(os.environ, FLASK_PORT='5002', REDIS_PRIMARY_PORT=str(port),
                REDIS_REPLICA_PORT=str(replica_port), PYTHONUNBUFFERED='1')
-    stream = (ROOT/'logs'/'flask-server.log').open('a')
+    # Keep captured experiment evidence immutable after the run completes.
+    stream = (ROOT/'logs'/('flask-live.log' if live else 'flask-server.log')).open('a')
     PROCESS = subprocess.Popen([sys.executable,str(ROOT/'app.py')], cwd=ROOT,
                                env=env, stdout=stream, stderr=subprocess.STDOUT,
                                start_new_session=True)
@@ -292,7 +293,7 @@ def experiments():
             cli('redis-primary','REPLICAOF','NO','ONE')
         cli('redis-replica','REPLICAOF','redis-primary','6379')
         sync()
-        start_api()
+        start_api(live=True)
     statuses()
     final = api('GET','/counter?from=primary')['value']
     assert api('GET','/counter?from=replica')['value'] == final

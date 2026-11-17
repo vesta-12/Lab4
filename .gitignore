@@ -7,3 +7,5 @@ lab4/__pycache__/
 **/.pytest_cache/
 lab4/logs/*.pid
 lab4/logs/*.lock
+
+lab4/logs/flask-live.log

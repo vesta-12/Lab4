@@ -489,3 +489,5 @@ Lab 4 application: /Users/sofiyaserbina/Lab3_Docker_Kubernetes_Lab4/lab4/app.py 
 127.0.0.1 - - [17/Nov/2026 14:22:02] "GET /counter?from=replica HTTP/1.1" 200 -
 127.0.0.1 - - [17/Nov/2026 14:22:02] "GET /counter?from=replica HTTP/1.1" 200 -
 127.0.0.1 - - [17/Nov/2026 14:22:02] "GET /counter?from=replica HTTP/1.1" 200 -
+127.0.0.1 - - [17/Nov/2026 14:25:12] "GET /counter?from=primary HTTP/1.1" 200 -
+127.0.0.1 - - [17/Nov/2026 14:25:12] "GET /counter?from=replica HTTP/1.1" 200 -

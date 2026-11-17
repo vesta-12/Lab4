@@ -91,6 +91,8 @@ docker compose up -d
 
 The suite owns its Flask child, performs real HTTP requests, recreates RustFS without deleting its volume, temporarily stops only Lab 4 services, changes Redis roles, and restores the standard topology. It never kills a foreign listener, resets the counter or deletes volumes. It leaves its Flask process on port 5002; its PID is in ignored `logs/flask.pid`. To stop that server, inspect the PID and process path before sending it TERM, or stop your own foreground server with Ctrl+C. Do not kill a process based on port alone.
 
+`logs/flask-server.log` is the captured experiment server output. After restoration the remaining server writes to ignored `logs/flask-live.log`, so normal demonstration requests do not modify the submitted evidence.
+
 With that API running, `.venv/bin/python scripts/check_boundaries.py` reproduces the additional size-limit and stopped-replica checks. It creates two boundary objects, briefly stops the replica, restores it, and leaves the counter unchanged.
 
 Re-running **adds increments to the existing counter and replaces experiment logs**. Copy the current `logs/` and `screenshots/` first if preserving this submission's evidence. Logs are timestamped JSON Lines with original command stdout and HTTP responses. `logs/integration-run.log` contains the combined full run. `logs/replication-status.log` has the initial roles; the end of E4 contains the restored roles. No Redis WAIT is inserted between E1 writes and reads.
