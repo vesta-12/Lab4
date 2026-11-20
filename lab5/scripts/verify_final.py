@@ -19,12 +19,14 @@ def command(cmd,cwd=ROOT):
 def main():
     result=json.loads((ROOT/'logs/results.json').read_text())
     assert result['complete']
-    branch=command(['git','branch','--show-current'],REPO).strip()
-    assert branch=='lab5-nosql-fault-tolerance'
-    base=command(['git','rev-parse','lab4-storage-replication'],REPO).strip()
-    assert base=='462db1db5f91648f101cc3dc52412df39d681a85'
+    checkout=(REPO/'.git').exists()
+    branch=command(['git','branch','--show-current'],REPO).strip() if checkout else None
+    base=command(['git','rev-parse','lab4-storage-replication'],REPO).strip() if checkout else None
+    if checkout:
+        assert branch=='lab5-nosql-fault-tolerance'
+        assert base=='462db1db5f91648f101cc3dc52412df39d681a85'
     preserved={}
-    names=command(['git','ls-tree','-r','--name-only',base],REPO).splitlines()
+    names=command(['git','ls-tree','-r','--name-only',base],REPO).splitlines() if checkout else []
     for name in names:
         old=subprocess.check_output(['git','show',base+':'+name],cwd=REPO)
         current=(REPO/name).read_bytes()
@@ -67,7 +69,8 @@ def main():
         p=subprocess.run(compose+['exec','-T',service,*args],cwd=ROOT,text=True,capture_output=True,check=True,timeout=20)
         versions[service]=p.stdout+p.stderr
     data={'verified_at_utc':datetime.now(timezone.utc).isoformat(),'status':'PASS','branch':branch,
-          'protected_lab4_head':base,'original_files_preserved':len(preserved),'original_sha256':preserved,
+          'protected_lab4_head':base,'original_files_preserved':len(preserved) if checkout else None,'original_sha256':preserved,
+          'earlier_lab_audit':'verified' if checkout else 'not applicable: standalone ZIP has no prior Git checkout',
           'members':roles,'containers':configs,'http':observed,'versions':versions,
           'mongo_network_internal':True,'mongo_api_ports_not_published':True,
           'no_lab5_OOM_killed':True,'acknowledged_control_record_retained':True}

@@ -32,6 +32,18 @@ SESSION.trust_env=False
 def utc():
     return datetime.now(timezone.utc).isoformat()
 
+def validate_location():
+    assert (ROOT/'docker-compose.yml').is_file()
+    assert (ROOT/'docker-compose.yml').read_text().startswith('name: lab5')
+    # Preserve branch protection in the real checkout, but a submission ZIP
+    # intentionally has no .git directory and must remain executable.
+    checkout=(ROOT.parent/'.git').exists()
+    branch=None
+    if checkout:
+        branch=subprocess.check_output(['git','branch','--show-current'],cwd=ROOT,text=True).strip()
+        assert branch=='lab5-nosql-fault-tolerance',branch
+    return {'root':str(ROOT),'compose_project':'lab5','git_checkout':checkout,'branch':branch}
+
 class Run:
     def __init__(self):
         self.id=datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ')+'-'+uuid4().hex[:6]
@@ -378,9 +390,12 @@ def publish_selected(run):
 def main():
     parser=argparse.ArgumentParser()
     parser.add_argument('--extended',action='store_true',help='Bounded additional saturation runs up to 1600 users')
+    parser.add_argument('--check-location',action='store_true',help='Validate checkout/standalone ZIP without starting tests')
     args=parser.parse_args()
-    branch=subprocess.check_output(['git','branch','--show-current'],cwd=ROOT,text=True).strip()
-    assert branch=='lab5-nosql-fault-tolerance',branch
+    location=validate_location()
+    if args.check_location:
+        print(json.dumps(location))
+        return
     import fcntl
     lock=(ROOT/'logs'/'suite.lock').open('w')
     fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)

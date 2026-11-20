@@ -9,9 +9,10 @@ from pathlib import Path
 import shutil
 import sys
 
-from run_suite import Run,ROOT,load_level,primary_failure,utc,wait_seconds
+from run_suite import Run,ROOT,load_level,primary_failure,utc,wait_seconds,validate_location
 
 def main():
+    validate_location()
     import fcntl
     lock=(ROOT/'logs/suite.lock').open('w')
     fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)

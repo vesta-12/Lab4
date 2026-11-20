@@ -26,6 +26,8 @@ docker compose exec nginx nginx -t
 
 The repeat init command verifies the existing configuration and performs no forced reconfiguration. Compose explicitly uses project name lab5. Do not execute these commands from the repository root's older Compose file. Never remove the existing volumes with `down -v`.
 
+For a standalone submission ZIP, change into its extracted `lab5/` directory instead of the original absolute path. Git and the old laboratories are not required to run the API/tests there. Branch protection is checked only when a real checkout is present; `scripts/run_suite.py --check-location` verifies this without starting tests. The final verifier explicitly marks the old-lab audit as not applicable in a standalone copy rather than claiming to have checked absent files.
+
 If 8080 is occupied, inspect its owner and use a free port, for example `LAB5_HTTP_PORT=8081 docker compose up -d`; set `BASE_URL=http://127.0.0.1:8081` for all tests. Do not kill another listener. Container port 5000 is independent of macOS Control Center and Lab 4's host port 5002.
 
 ## API demonstration
@@ -148,5 +150,13 @@ To regenerate the report and static chart from the selected completed run:
 ```
 
 Regenerating evidence pages does not recapture screenshots. Existing snapshots keep their original provenance. Refresh the manifest only after intentional updates to a submission.
+
+If the student's group must be added, edit the `Group:` field in `test_report.md`. Rebuild the ZIP and checksums with the standard-library packer (no third-party packages needed):
+
+```bash
+python3 scripts/package_submission.py --output /absolute/output/Serbina_Sofiya_Lab5.zip
+```
+
+The original Git remote reports that this same repository moved to `https://github.com/vesta-12/Lab4`; the old URL redirects. The Lab 5 branch is `https://github.com/vesta-12/Lab4/tree/lab5-nosql-fault-tolerance`.
 
 Primary references: [MongoDB elections](https://www.mongodb.com/docs/manual/core/replica-set-elections/), [PyMongo operation timeouts](https://pymongo.readthedocs.io/en/4.10.1/examples/timeouts.html), [nginx upstream retry](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_next_upstream), [Locust documentation](https://docs.locust.io/en/2.32.4/).
