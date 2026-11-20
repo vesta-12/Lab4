@@ -1,0 +1,282 @@
+{
+  "label": "baseline",
+  "requests": 30,
+  "counts": {
+    "api3": 10,
+    "api1": 10,
+    "api2": 10
+  },
+  "errors": 0,
+  "rows": [
+    {
+      "index": 1,
+      "status": 200,
+      "body": {
+        "served_by": "api3",
+        "server_time": "2026-11-20 10:42:25.770744"
+      },
+      "timestamp": "2026-11-20T10:42:25.774889+00:00"
+    },
+    {
+      "index": 2,
+      "status": 200,
+      "body": {
+        "served_by": "api1",
+        "server_time": "2026-11-20 10:42:25.779178"
+      },
+      "timestamp": "2026-11-20T10:42:25.782700+00:00"
+    },
+    {
+      "index": 3,
+      "status": 200,
+      "body": {
+        "served_by": "api2",
+        "server_time": "2026-11-20 10:42:25.784575"
+      },
+      "timestamp": "2026-11-20T10:42:25.787718+00:00"
+    },
+    {
+      "index": 4,
+      "status": 200,
+      "body": {
+        "served_by": "api3",
+        "server_time": "2026-11-20 10:42:25.788082"
+      },
+      "timestamp": "2026-11-20T10:42:25.791034+00:00"
+    },
+    {
+      "index": 5,
+      "status": 200,
+      "body": {
+        "served_by": "api1",
+        "server_time": "2026-11-20 10:42:25.791692"
+      },
+      "timestamp": "2026-11-20T10:42:25.794380+00:00"
+    },
+    {
+      "index": 6,
+      "status": 200,
+      "body": {
+        "served_by": "api2",
+        "server_time": "2026-11-20 10:42:25.796612"
+      },
+      "timestamp": "2026-11-20T10:42:25.800718+00:00"
+    },
+    {
+      "index": 7,
+      "status": 200,
+      "body": {
+        "served_by": "api3",
+        "server_time": "2026-11-20 10:42:25.801297"
+      },
+      "timestamp": "2026-11-20T10:42:25.803845+00:00"
+    },
+    {
+      "index": 8,
+      "status": 200,
+      "body": {
+        "served_by": "api1",
+        "server_time": "2026-11-20 10:42:25.803818"
+      },
+      "timestamp": "2026-11-20T10:42:25.806220+00:00"
+    },
+    {
+      "index": 9,
+      "status": 200,
+      "body": {
+        "served_by": "api2",
+        "server_time": "2026-11-20 10:42:25.805881"
+      },
+      "timestamp": "2026-11-20T10:42:25.808102+00:00"
+    },
+    {
+      "index": 10,
+      "status": 200,
+      "body": {
+        "served_by": "api3",
+        "server_time": "2026-11-20 10:42:25.807601"
+      },
+      "timestamp": "2026-11-20T10:42:25.809750+00:00"
+    },
+    {
+      "index": 11,
+      "status": 200,
+      "body": {
+        "served_by": "api1",
+        "server_time": "2026-11-20 10:42:25.809219"
+      },
+      "timestamp": "2026-11-20T10:42:25.811326+00:00"
+    },
+    {
+      "index": 12,
+      "status": 200,
+      "body": {
+        "served_by": "api2",
+        "server_time": "2026-11-20 10:42:25.810767"
+      },
+      "timestamp": "2026-11-20T10:42:25.812928+00:00"
+    },
+    {
+      "index": 13,
+      "status": 200,
+      "body": {
+        "served_by": "api3",
+        "server_time": "2026-11-20 10:42:25.812519"
+      },
+      "timestamp": "2026-11-20T10:42:25.814766+00:00"
+    },
+    {
+      "index": 14,
+      "status": 200,
+      "body": {
+        "served_by": "api1",
+        "server_time": "2026-11-20 10:42:25.814265"
+      },
+      "timestamp": "2026-11-20T10:42:25.816412+00:00"
+    },
+    {
+      "index": 15,
+      "status": 200,
+      "body": {
+        "served_by": "api2",
+        "server_time": "2026-11-20 10:42:25.815799"
+      },
+      "timestamp": "2026-11-20T10:42:25.817888+00:00"
+    },
+    {
+      "index": 16,
+      "status": 200,
+      "body": {
+        "served_by": "api3",
+        "server_time": "2026-11-20 10:42:25.817359"
+      },
+      "timestamp": "2026-11-20T10:42:25.819514+00:00"
+    },
+    {
+      "index": 17,
+      "status": 200,
+      "body": {
+        "served_by": "api1",
+        "server_time": "2026-11-20 10:42:25.820497"
+      },
+      "timestamp": "2026-11-20T10:42:25.823360+00:00"
+    },
+    {
+      "index": 18,
+      "status": 200,
+      "body": {
+        "served_by": "api2",
+        "server_time": "2026-11-20 10:42:25.825128"
+      },
+      "timestamp": "2026-11-20T10:42:25.828141+00:00"
+    },
+    {
+      "index": 19,
+      "status": 200,
+      "body": {
+        "served_by": "api3",
+        "server_time": "2026-11-20 10:42:25.828558"
+      },
+      "timestamp": "2026-11-20T10:42:25.831220+00:00"
+    },
+    {
+      "index": 20,
+      "status": 200,
+      "body": {
+        "served_by": "api1",
+        "server_time": "2026-11-20 10:42:25.834832"
+      },
+      "timestamp": "2026-11-20T10:42:25.837698+00:00"
+    },
+    {
+      "index": 21,
+      "status": 200,
+      "body": {
+        "served_by": "api2",
+        "server_time": "2026-11-20 10:42:25.837581"
+      },
+      "timestamp": "2026-11-20T10:42:25.839976+00:00"
+    },
+    {
+      "index": 22,
+      "status": 200,
+      "body": {
+        "served_by": "api3",
+        "server_time": "2026-11-20 10:42:25.839720"
+      },
+      "timestamp": "2026-11-20T10:42:25.842097+00:00"
+    },
+    {
+      "index": 23,
+      "status": 200,
+      "body": {
+        "served_by": "api1",
+        "server_time": "2026-11-20 10:42:25.843088"
+      },
+      "timestamp": "2026-11-20T10:42:25.845448+00:00"
+    },
+    {
+      "index": 24,
+      "status": 200,
+      "body": {
+        "served_by": "api2",
+        "server_time": "2026-11-20 10:42:25.844807"
+      },
+      "timestamp": "2026-11-20T10:42:25.846851+00:00"
+    },
+    {
+      "index": 25,
+      "status": 200,
+      "body": {
+        "served_by": "api3",
+        "server_time": "2026-11-20 10:42:25.846047"
+      },
+      "timestamp": "2026-11-20T10:42:25.848103+00:00"
+    },
+    {
+      "index": 26,
+      "status": 200,
+      "body": {
+        "served_by": "api1",
+        "server_time": "2026-11-20 10:42:25.847411"
+      },
+      "timestamp": "2026-11-20T10:42:25.849447+00:00"
+    },
+    {
+      "index": 27,
+      "status": 200,
+      "body": {
+        "served_by": "api2",
+        "server_time": "2026-11-20 10:42:25.848634"
+      },
+      "timestamp": "2026-11-20T10:42:25.850637+00:00"
+    },
+    {
+      "index": 28,
+      "status": 200,
+      "body": {
+        "served_by": "api3",
+        "server_time": "2026-11-20 10:42:25.849924"
+      },
+      "timestamp": "2026-11-20T10:42:25.851884+00:00"
+    },
+    {
+      "index": 29,
+      "status": 200,
+      "body": {
+        "served_by": "api1",
+        "server_time": "2026-11-20 10:42:25.851033"
+      },
+      "timestamp": "2026-11-20T10:42:25.853076+00:00"
+    },
+    {
+      "index": 30,
+      "status": 200,
+      "body": {
+        "served_by": "api2",
+        "server_time": "2026-11-20 10:42:25.852345"
+      },
+      "timestamp": "2026-11-20T10:42:25.854332+00:00"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+<!doctype html><meta charset="utf-8"><title>Real record creation and reading</title>
+<style>body{font:16px Arial,sans-serif;margin:24px;color:#111;max-width:1200px}h1{font-size:24px;margin:0 0 12px}p{line-height:1.4}pre{font:14px/1.35 monospace;white-space:pre-wrap;overflow-wrap:anywhere}table{border-collapse:collapse;width:100%;font-size:15px}td,th{border:1px solid #aaa;padding:9px;text-align:left}th{background:#f3f3f3}</style>
+<h1>Real record creation and reading</h1><p><strong>Archived log evidence.</strong> Actual Lab 5 measurements, not a live terminal or a replay. Original logs and CSV files accompany the submission.</p><p>Run: 20261120T104224Z-425be5. Timestamps: UTC (Almaty = UTC+5).<br>Source: logs/events.jsonl; logs/mongo-record.log</p><pre>2026-11-20T10:42:26.259542+00:00
+POST http://127.0.0.1:8080/records
+HTTP 201
+{
+  &quot;id&quot;: &quot;d2825021-1d22-4f65-9f43-1cdce9988244&quot;,
+  &quot;served_by&quot;: &quot;api3&quot;,
+  &quot;text&quot;: &quot;Persistent control 20261120T104224Z-425be5&quot;
+}
+
+2026-11-20T10:42:28.782269+00:00
+GET http://127.0.0.1:8080/records/d2825021-1d22-4f65-9f43-1cdce9988244
+HTTP 200
+{
+  &quot;id&quot;: &quot;d2825021-1d22-4f65-9f43-1cdce9988244&quot;,
+  &quot;served_by&quot;: &quot;api2&quot;,
+  &quot;text&quot;: &quot;Persistent control 20261120T104224Z-425be5&quot;
+}</pre>

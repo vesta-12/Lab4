@@ -1,0 +1,389 @@
+{
+  "run_id": "20261120T105045Z-8235fc",
+  "started_utc": "2026-11-20T10:50:45.370850+00:00",
+  "base_url": "http://127.0.0.1:8080",
+  "complete": true,
+  "evidence_type": "Live HTTP through nginx and Docker containers; no mocks",
+  "targets_declared_in_spec": {
+    "p95_ms": 1000,
+    "error_percent": 1
+  },
+  "supplement": true,
+  "parent_run_id": "20261120T104224Z-425be5",
+  "control_record": {
+    "id": "d2825021-1d22-4f65-9f43-1cdce9988244",
+    "served_by": "api3",
+    "text": "Persistent control 20261120T104224Z-425be5"
+  },
+  "diagnostic_load": [
+    {
+      "users": 1600,
+      "duration_configured_seconds": 30,
+      "elapsed_seconds": 32.186473,
+      "spawn_rate": 320,
+      "start_utc": "2026-11-20T10:50:46.177336+00:00",
+      "end_utc": "2026-11-20T10:51:18.363834+00:00",
+      "command": [
+        "/Users/sofiyaserbina/Lab3_Docker_Kubernetes_Lab4/lab5/.venv/bin/python",
+        "-m",
+        "locust",
+        "-f",
+        "tests/locustfile.py",
+        "--headless",
+        "-u",
+        "1600",
+        "-r",
+        "320",
+        "-t",
+        "30s",
+        "--host",
+        "http://127.0.0.1:8080",
+        "--csv",
+        "/Users/sofiyaserbina/Lab3_Docker_Kubernetes_Lab4/lab5/logs/runs/20261120T105045Z-8235fc/locust_1600",
+        "--csv-full-history",
+        "--stop-timeout",
+        "12",
+        "--only-summary"
+      ],
+      "returncode": 1,
+      "request_count": 57107,
+      "failures": 3144,
+      "rps": 1874.4233727622998,
+      "median_ms": 140.0,
+      "p95_ms": 430.0,
+      "error_percent": 5.505454672807186,
+      "targets_pass": false,
+      "maximum_observed_users": 1600,
+      "raw_rows": 57107,
+      "stats": [
+        {
+          "Type": "POST",
+          "Name": "/records",
+          "Request Count": "14251",
+          "Failure Count": "771",
+          "Median Response Time": "150.0",
+          "Average Response Time": "435.34310148340484",
+          "Min Response Time": "1.7614999999999714",
+          "Max Response Time": "10497.066916",
+          "Average Content Size": "97.42754894393376",
+          "Requests/s": "467.76065079999887",
+          "Failures/s": "25.30653720909404",
+          "50%": "150",
+          "66%": "180",
+          "75%": "200",
+          "80%": "220",
+          "90%": "280",
+          "95%": "420",
+          "98%": "8400",
+          "99%": "9300",
+          "99.9%": "10000",
+          "99.99%": "10000",
+          "100%": "10000"
+        },
+        {
+          "Type": "GET",
+          "Name": "/time",
+          "Request Count": "42856",
+          "Failure Count": "2373",
+          "Median Response Time": "140.0",
+          "Average Response Time": "458.2226889296492",
+          "Min Response Time": "0.680082999999998",
+          "Max Response Time": "10532.390667",
+          "Average Content Size": "60.45622549934665",
+          "Requests/s": "1406.662721962301",
+          "Failures/s": "77.88899195483806",
+          "50%": "140",
+          "66%": "160",
+          "75%": "190",
+          "80%": "200",
+          "90%": "270",
+          "95%": "440",
+          "98%": "8600",
+          "99%": "9300",
+          "99.9%": "10000",
+          "99.99%": "10000",
+          "100%": "11000"
+        },
+        {
+          "Type": "",
+          "Name": "Aggregated",
+          "Request Count": "57107",
+          "Failure Count": "3144",
+          "Median Response Time": "140.0",
+          "Average Response Time": "452.5131086558364",
+          "Min Response Time": "0.680082999999998",
+          "Max Response Time": "10532.390667",
+          "Average Content Size": "69.68238569702488",
+          "Requests/s": "1874.4233727622998",
+          "Failures/s": "103.19552916393211",
+          "50%": "140",
+          "66%": "170",
+          "75%": "190",
+          "80%": "210",
+          "90%": "280",
+          "95%": "430",
+          "98%": "8500",
+          "99%": "9300",
+          "99.9%": "10000",
+          "99.99%": "10000",
+          "100%": "11000"
+        }
+      ]
+    }
+  ],
+  "primary_crash": {
+    "old_primary": "mongo1",
+    "new_primary": "mongo2",
+    "stop": {
+      "timestamp": "2026-11-20T10:51:31.157279+00:00",
+      "monotonic": 45.927273416,
+      "event": "command",
+      "command": [
+        "docker",
+        "compose",
+        "--project-name",
+        "lab5",
+        "--file",
+        "/Users/sofiyaserbina/Lab3_Docker_Kubernetes_Lab4/lab5/docker-compose.yml",
+        "kill",
+        "--signal",
+        "SIGKILL",
+        "mongo1"
+      ],
+      "start_utc": "2026-11-20T10:51:30.883460+00:00",
+      "end_utc": "2026-11-20T10:51:31.157259+00:00",
+      "start_monotonic": 45.653409583,
+      "end_monotonic": 45.927267666,
+      "returncode": 0,
+      "stdout": "",
+      "stderr": " Container lab5-mongo1-1 Killing \n Container lab5-mongo1-1 Killed \n"
+    },
+    "start": {
+      "timestamp": "2026-11-20T10:51:48.194312+00:00",
+      "monotonic": 62.964297458,
+      "event": "command",
+      "command": [
+        "docker",
+        "compose",
+        "--project-name",
+        "lab5",
+        "--file",
+        "/Users/sofiyaserbina/Lab3_Docker_Kubernetes_Lab4/lab5/docker-compose.yml",
+        "start",
+        "mongo1"
+      ],
+      "start_utc": "2026-11-20T10:51:47.878309+00:00",
+      "end_utc": "2026-11-20T10:51:48.194274+00:00",
+      "start_monotonic": 62.648261125,
+      "end_monotonic": 62.964279375,
+      "returncode": 0,
+      "stdout": "",
+      "stderr": " Container lab5-mongo1-1 Starting \n Container lab5-mongo1-1 Started \n"
+    },
+    "new_primary_observation": {
+      "timestamp": "2026-11-20T10:51:41.863745+00:00",
+      "monotonic": 56.633735166,
+      "event": "new_primary_detected",
+      "old_primary": "mongo1",
+      "new_primary": "mongo2",
+      "members": [
+        {
+          "name": "mongo1:27017",
+          "state": "(not reachable/healthy)",
+          "health": 0
+        },
+        {
+          "name": "mongo2:27017",
+          "state": "PRIMARY",
+          "health": 1
+        },
+        {
+          "name": "mongo3:27017",
+          "state": "SECONDARY",
+          "health": 1
+        }
+      ]
+    },
+    "observed_election_seconds": 10.980326,
+    "writes": {
+      "samples": 40,
+      "post_stop_samples": 30,
+      "http_503": 2,
+      "other_http_errors": 0,
+      "transport_errors": 0,
+      "first_error": {
+        "scenario": "primary_crash",
+        "run_id": "20261120T105045Z-8235fc",
+        "sequence": 12,
+        "start_utc": "2026-11-20T10:51:31.407683+00:00",
+        "start_monotonic": 46.177743625,
+        "method": "POST",
+        "status": 503,
+        "served_by": null,
+        "record_id": null,
+        "error": "storage unavailable",
+        "end_utc": "2026-11-20T10:51:35.637086+00:00",
+        "end_monotonic": 50.407094375,
+        "elapsed_ms": 4229.3513
+      },
+      "first_503": {
+        "scenario": "primary_crash",
+        "run_id": "20261120T105045Z-8235fc",
+        "sequence": 12,
+        "start_utc": "2026-11-20T10:51:31.407683+00:00",
+        "start_monotonic": 46.177743625,
+        "method": "POST",
+        "status": 503,
+        "served_by": null,
+        "record_id": null,
+        "error": "storage unavailable",
+        "end_utc": "2026-11-20T10:51:35.637086+00:00",
+        "end_monotonic": 50.407094375,
+        "elapsed_ms": 4229.3513
+      },
+      "first_success_after_errors": {
+        "scenario": "primary_crash",
+        "run_id": "20261120T105045Z-8235fc",
+        "sequence": 14,
+        "start_utc": "2026-11-20T10:51:39.716525+00:00",
+        "start_monotonic": 54.48651475,
+        "method": "POST",
+        "status": 201,
+        "served_by": "api2",
+        "record_id": "a33657da-be99-4d09-a0bb-5a6c35c4ff38",
+        "error": null,
+        "end_utc": "2026-11-20T10:51:41.346349+00:00",
+        "end_monotonic": 56.116352208,
+        "elapsed_ms": 1629.838
+      },
+      "stop_to_recovery_seconds": 10.462943,
+      "error_to_recovery_seconds": 5.709258,
+      "first_post_stop_success": {
+        "scenario": "primary_crash",
+        "run_id": "20261120T105045Z-8235fc",
+        "sequence": 11,
+        "start_utc": "2026-11-20T10:51:30.905012+00:00",
+        "start_monotonic": 45.675041666,
+        "method": "POST",
+        "status": 201,
+        "served_by": "api2",
+        "record_id": "65ff5d3e-2a10-4be6-90c5-1ef4060405fb",
+        "error": null,
+        "end_utc": "2026-11-20T10:51:30.928547+00:00",
+        "end_monotonic": 45.698546125,
+        "elapsed_ms": 23.5046
+      }
+    },
+    "reads": {
+      "samples": 40,
+      "post_stop_samples": 30,
+      "http_503": 2,
+      "other_http_errors": 0,
+      "transport_errors": 0,
+      "first_error": {
+        "scenario": "primary_crash",
+        "run_id": "20261120T105045Z-8235fc",
+        "sequence": 12,
+        "start_utc": "2026-11-20T10:51:31.417878+00:00",
+        "start_monotonic": 46.187908833,
+        "method": "GET",
+        "status": 503,
+        "served_by": null,
+        "record_id": null,
+        "error": "storage unavailable",
+        "end_utc": "2026-11-20T10:51:35.637564+00:00",
+        "end_monotonic": 50.407558458,
+        "elapsed_ms": 4219.6498
+      },
+      "first_503": {
+        "scenario": "primary_crash",
+        "run_id": "20261120T105045Z-8235fc",
+        "sequence": 12,
+        "start_utc": "2026-11-20T10:51:31.417878+00:00",
+        "start_monotonic": 46.187908833,
+        "method": "GET",
+        "status": 503,
+        "served_by": null,
+        "record_id": null,
+        "error": "storage unavailable",
+        "end_utc": "2026-11-20T10:51:35.637564+00:00",
+        "end_monotonic": 50.407558458,
+        "elapsed_ms": 4219.6498
+      },
+      "first_success_after_errors": {
+        "scenario": "primary_crash",
+        "run_id": "20261120T105045Z-8235fc",
+        "sequence": 14,
+        "start_utc": "2026-11-20T10:51:40.109297+00:00",
+        "start_monotonic": 54.879287666,
+        "method": "GET",
+        "status": 200,
+        "served_by": "api1",
+        "record_id": "d2825021-1d22-4f65-9f43-1cdce9988244",
+        "error": null,
+        "end_utc": "2026-11-20T10:51:41.336860+00:00",
+        "end_monotonic": 56.106868833,
+        "elapsed_ms": 1227.5817
+      },
+      "stop_to_recovery_seconds": 10.453459,
+      "error_to_recovery_seconds": 5.69931,
+      "first_post_stop_success": {
+        "scenario": "primary_crash",
+        "run_id": "20261120T105045Z-8235fc",
+        "sequence": 11,
+        "start_utc": "2026-11-20T10:51:30.916838+00:00",
+        "start_monotonic": 45.686847916,
+        "method": "GET",
+        "status": 200,
+        "served_by": "api1",
+        "record_id": "d2825021-1d22-4f65-9f43-1cdce9988244",
+        "error": null,
+        "end_utc": "2026-11-20T10:51:30.926542+00:00",
+        "end_monotonic": 45.696542541,
+        "elapsed_ms": 9.6948
+      }
+    },
+    "retained_control_ids": [
+      "d2825021-1d22-4f65-9f43-1cdce9988244",
+      "433092d0-c52b-4e30-9e9d-7755f28604f5",
+      "072829fb-4e0f-4bdf-aa09-0b50779a3025",
+      "23ee081b-eb72-4cf8-b43b-b407aca9d9f3"
+    ],
+    "retention": "PASS",
+    "final_members": [
+      {
+        "name": "mongo1:27017",
+        "state": "SECONDARY",
+        "health": 1
+      },
+      {
+        "name": "mongo2:27017",
+        "state": "PRIMARY",
+        "health": 1
+      },
+      {
+        "name": "mongo3:27017",
+        "state": "SECONDARY",
+        "health": 1
+      }
+    ]
+  },
+  "completed_utc": "2026-11-20T10:51:54.420146+00:00",
+  "final_members": [
+    {
+      "name": "mongo1:27017",
+      "state": "SECONDARY",
+      "health": 1
+    },
+    {
+      "name": "mongo2:27017",
+      "state": "PRIMARY",
+      "health": 1
+    },
+    {
+      "name": "mongo3:27017",
+      "state": "SECONDARY",
+      "health": 1
+    }
+  ]
+}

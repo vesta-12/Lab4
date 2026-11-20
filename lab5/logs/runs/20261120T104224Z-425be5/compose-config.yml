@@ -1,0 +1,283 @@
+name: lab5
+services:
+  api1:
+    environment:
+      MONGO_DB: lab5
+      MONGO_URI: mongodb://mongo1:27017,mongo2:27017,mongo3:27017/?replicaSet=rs0
+      PYTHONUNBUFFERED: "1"
+    hostname: api1
+    image: lab5-api:local
+    networks:
+      database: null
+      frontend: null
+    stop_grace_period: 8s
+    build:
+      context: /Users/sofiyaserbina/Lab3_Docker_Kubernetes_Lab4/lab5/app
+      dockerfile: Dockerfile
+    depends_on:
+      mongo-init:
+        condition: service_completed_successfully
+        required: true
+    healthcheck:
+      test:
+        - CMD
+        - python
+        - -c
+        - import urllib.request; urllib.request.urlopen('http://127.0.0.1:5000/time',timeout=2)
+      timeout: 3s
+      interval: 5s
+      retries: 20
+  api2:
+    environment:
+      MONGO_DB: lab5
+      MONGO_URI: mongodb://mongo1:27017,mongo2:27017,mongo3:27017/?replicaSet=rs0
+      PYTHONUNBUFFERED: "1"
+    hostname: api2
+    image: lab5-api:local
+    networks:
+      database: null
+      frontend: null
+    stop_grace_period: 8s
+    build:
+      context: /Users/sofiyaserbina/Lab3_Docker_Kubernetes_Lab4/lab5/app
+      dockerfile: Dockerfile
+    depends_on:
+      mongo-init:
+        condition: service_completed_successfully
+        required: true
+    healthcheck:
+      test:
+        - CMD
+        - python
+        - -c
+        - import urllib.request; urllib.request.urlopen('http://127.0.0.1:5000/time',timeout=2)
+      timeout: 3s
+      interval: 5s
+      retries: 20
+  api3:
+    environment:
+      MONGO_DB: lab5
+      MONGO_URI: mongodb://mongo1:27017,mongo2:27017,mongo3:27017/?replicaSet=rs0
+      PYTHONUNBUFFERED: "1"
+    hostname: api3
+    image: lab5-api:local
+    networks:
+      database: null
+      frontend: null
+    stop_grace_period: 8s
+    build:
+      context: /Users/sofiyaserbina/Lab3_Docker_Kubernetes_Lab4/lab5/app
+      dockerfile: Dockerfile
+    depends_on:
+      mongo-init:
+        condition: service_completed_successfully
+        required: true
+    healthcheck:
+      test:
+        - CMD
+        - python
+        - -c
+        - import urllib.request; urllib.request.urlopen('http://127.0.0.1:5000/time',timeout=2)
+      timeout: 3s
+      interval: 5s
+      retries: 20
+  mongo-init:
+    restart: 'no'
+    entrypoint:
+      - mongosh
+      - --host
+      - mongo1:27017
+      - --quiet
+      - /scripts/init-replica.js
+    image: mongo:7
+    networks:
+      database: null
+    volumes:
+      - type: bind
+        source: /Users/sofiyaserbina/Lab3_Docker_Kubernetes_Lab4/lab5/init-replica.js
+        target: /scripts/init-replica.js
+        read_only: true
+        bind: {}
+    depends_on:
+      mongo1:
+        condition: service_healthy
+        required: true
+      mongo2:
+        condition: service_healthy
+        required: true
+      mongo3:
+        condition: service_healthy
+        required: true
+  mongo1:
+    command:
+      - mongod
+      - --replSet
+      - rs0
+      - --bind_ip_all
+      - --wiredTigerCacheSizeGB
+      - "0.25"
+    hostname: mongo1
+    image: mongo:7
+    networks:
+      database: null
+    stop_grace_period: 5s
+    volumes:
+      - type: volume
+        source: mongo1-data
+        target: /data/db
+        volume: {}
+      - type: bind
+        source: /Users/sofiyaserbina/Lab3_Docker_Kubernetes_Lab4/lab5/init-replica.js
+        target: /scripts/init-replica.js
+        read_only: true
+        bind: {}
+    healthcheck:
+      test:
+        - CMD
+        - mongosh
+        - --quiet
+        - --eval
+        - 'quit(db.adminCommand({ping:1}).ok ? 0 : 1)'
+      timeout: 4s
+      interval: 5s
+      retries: 40
+  mongo2:
+    command:
+      - mongod
+      - --replSet
+      - rs0
+      - --bind_ip_all
+      - --wiredTigerCacheSizeGB
+      - "0.25"
+    hostname: mongo2
+    image: mongo:7
+    networks:
+      database: null
+    stop_grace_period: 5s
+    volumes:
+      - type: volume
+        source: mongo2-data
+        target: /data/db
+        volume: {}
+    healthcheck:
+      test:
+        - CMD
+        - mongosh
+        - --quiet
+        - --eval
+        - 'quit(db.adminCommand({ping:1}).ok ? 0 : 1)'
+      timeout: 4s
+      interval: 5s
+      retries: 40
+  mongo3:
+    command:
+      - mongod
+      - --replSet
+      - rs0
+      - --bind_ip_all
+      - --wiredTigerCacheSizeGB
+      - "0.25"
+    hostname: mongo3
+    image: mongo:7
+    networks:
+      database: null
+    stop_grace_period: 5s
+    volumes:
+      - type: volume
+        source: mongo3-data
+        target: /data/db
+        volume: {}
+    healthcheck:
+      test:
+        - CMD
+        - mongosh
+        - --quiet
+        - --eval
+        - 'quit(db.adminCommand({ping:1}).ok ? 0 : 1)'
+      timeout: 4s
+      interval: 5s
+      retries: 40
+  nginx:
+    image: nginx:1.27
+    networks:
+      frontend: null
+    volumes:
+      - type: bind
+        source: /Users/sofiyaserbina/Lab3_Docker_Kubernetes_Lab4/lab5/nginx.conf
+        target: /etc/nginx/nginx.conf
+        read_only: true
+        bind: {}
+    depends_on:
+      api1:
+        condition: service_healthy
+        required: true
+      api2:
+        condition: service_healthy
+        required: true
+      api3:
+        condition: service_healthy
+        required: true
+    ports:
+      - mode: ingress
+        host_ip: 127.0.0.1
+        target: 80
+        published: "8080"
+        protocol: tcp
+networks:
+  database:
+    name: lab5_database
+    internal: true
+  frontend:
+    name: lab5_frontend
+volumes:
+  mongo1-data:
+    name: lab5_mongo1-data
+  mongo2-data:
+    name: lab5_mongo2-data
+  mongo3-data:
+    name: lab5_mongo3-data
+x-api:
+  build: ./app
+  depends_on:
+    mongo-init:
+      condition: service_completed_successfully
+  environment:
+    MONGO_DB: lab5
+    MONGO_URI: mongodb://mongo1:27017,mongo2:27017,mongo3:27017/?replicaSet=rs0
+    PYTHONUNBUFFERED: "1"
+  healthcheck:
+    interval: 5s
+    retries: 20
+    test:
+      - CMD
+      - python
+      - -c
+      - import urllib.request; urllib.request.urlopen('http://127.0.0.1:5000/time',timeout=2)
+    timeout: 3s
+  image: lab5-api:local
+  networks:
+    - frontend
+    - database
+  stop_grace_period: 8s
+x-mongo:
+  command:
+    - mongod
+    - --replSet
+    - rs0
+    - --bind_ip_all
+    - --wiredTigerCacheSizeGB
+    - "0.25"
+  healthcheck:
+    interval: 5s
+    retries: 40
+    test:
+      - CMD
+      - mongosh
+      - --quiet
+      - --eval
+      - 'quit(db.adminCommand({ping:1}).ok ? 0 : 1)'
+    timeout: 4s
+  image: mongo:7
+  networks:
+    - database
+  stop_grace_period: 5s

@@ -20,7 +20,7 @@ def start_raw(environment,**kwargs):
         stream=open(name,'w',newline='')
         writer=csv.writer(stream)
         writer.writerow(['start_utc','end_utc','method','endpoint','milliseconds','status','bytes',
-                         'error','served_by','record_id','users'])
+                         'error','served_by','record_id','users','transport_error'])
 
 @events.request.add_listener
 def measured(request_type,name,response_time,response_length,response=None,exception=None,
@@ -33,9 +33,10 @@ def measured(request_type,name,response_time,response_length,response=None,excep
         body={}
     writer.writerow([datetime.fromtimestamp(start_time,timezone.utc).isoformat() if start_time else '',
         datetime.now(timezone.utc).isoformat(),request_type,name,response_time,
-        response.status_code if response is not None else '',response_length,
+        response.status_code if response is not None and response.status_code else '',response_length,
         str(exception) if exception else '',body.get('served_by',''),body.get('id',''),
-        runtime.runner.user_count])
+        runtime.runner.user_count,
+        repr(getattr(response,'error',None)) if getattr(response,'error',None) else ''])
 
 @events.test_stop.add_listener
 def stop_raw(environment,**kwargs):
@@ -59,9 +60,9 @@ class ApiUser(HttpUser):
     @task(3)
     def get_time(self):
         with self.client.get('/time',timeout=12,catch_response=True) as response:
-            if response.status_code!=200:
+            if response.status_code and response.status_code!=200:
                 response.failure('Expected HTTP 200')
-            else:
+            elif response.status_code==200:
                 try:
                     if response.json().get('served_by') not in {'api1','api2','api3'}:
                         response.failure('Invalid served_by')
@@ -72,5 +73,5 @@ class ApiUser(HttpUser):
     def create_record(self):
         with self.client.post('/records',json={'text':'load '+os.getenv('LAB5_RUN_ID','manual')},
                               timeout=12,catch_response=True) as response:
-            if response.status_code!=201:
+            if response.status_code and response.status_code!=201:
                 response.failure('Expected HTTP 201')

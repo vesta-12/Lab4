@@ -239,17 +239,18 @@ def api_failure(run):
     run.record('api_failure_result',result=run.summary['api_failure'])
     run.save()
 
-def primary_failure(run):
+def primary_failure(run,crash=False):
     roles=run.wait_topology()
     old=next(x['name'].split(':')[0] for x in roles if x['state']=='PRIMARY')
     survivor=next(x['name'].split(':')[0] for x in roles if x['name'].split(':')[0]!=old)
     controls=[run.summary['control_record']]+[run.http('POST','/records',201,
         json={'text':'Majority-acknowledged pre-failure '+str(i)+' '+run.id}) for i in range(3)]
-    pair=ProbePair(run,'primary_down',controls[0]['id'])
+    key='primary_crash' if crash else 'primary_failure'
+    pair=ProbePair(run,'primary_crash' if crash else 'primary_down',controls[0]['id'])
     restored=False
     try:
         wait_seconds(5)
-        _,stopped=run.command('stop',old)
+        _,stopped=run.command(*(['kill','--signal','SIGKILL',old] if crash else ['stop',old]))
         deadline=time.monotonic()+90
         election=None
         while time.monotonic()<deadline:
@@ -276,13 +277,13 @@ def primary_failure(run):
         pair.stop()
     for control in controls+[created]:
         assert run.http('GET','/records/'+control['id'])['text']==control['text']
-    run.summary['primary_failure']={'old_primary':old,'new_primary':new,'stop':stopped,
+    run.summary[key]={'old_primary':old,'new_primary':new,'stop':stopped,
         'start':started,'new_primary_observation':election,
         'observed_election_seconds':round(election['monotonic']-stopped['start_monotonic'],6),
         'writes':error_summary(pair.rows(),stopped['start_monotonic']),
         'reads':error_summary(pair.rows('GET'),stopped['start_monotonic']),
         'retained_control_ids':[x['id'] for x in controls], 'retention':'PASS','final_members':final}
-    run.record('primary_failure_result',result=run.summary['primary_failure'])
+    run.record(key+'_result',result=run.summary[key])
     run.save()
 
 def memory_bytes(text):
@@ -360,7 +361,7 @@ def load_tests(run,extended):
         run.summary['load'].append(load_level(run,users,60,spawn)); run.save()
     run.summary['exploratory_load']=[]
     if extended:
-        for users in [200,400,800]:
+        for users in [200,400,800,1600]:
             result=load_level(run,users,30,users//5)
             run.summary['exploratory_load'].append(result); run.save()
             # End the bounded exploration at the first observed target breach.
@@ -376,7 +377,7 @@ def publish_selected(run):
 
 def main():
     parser=argparse.ArgumentParser()
-    parser.add_argument('--extended',action='store_true',help='Bounded additional saturation runs up to 800 users')
+    parser.add_argument('--extended',action='store_true',help='Bounded additional saturation runs up to 1600 users')
     args=parser.parse_args()
     branch=subprocess.check_output(['git','branch','--show-current'],cwd=ROOT,text=True).strip()
     assert branch=='lab5-nosql-fault-tolerance',branch

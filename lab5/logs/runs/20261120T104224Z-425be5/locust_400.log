@@ -1,0 +1,24 @@
+/Users/sofiyaserbina/Lab3_Docker_Kubernetes_Lab4/lab5/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+[2026-11-20 15:46:35,733] MacBook-Pro-Sofiya/INFO/locust.main: Starting Locust 2.32.4
+[2026-11-20 15:46:35,733] MacBook-Pro-Sofiya/WARNING/locust.main: Python 3.9 support is deprecated and will be removed soon
+[2026-11-20 15:46:35,734] MacBook-Pro-Sofiya/INFO/locust.main: Run time limit set to 30 seconds
+[2026-11-20 15:46:35,735] MacBook-Pro-Sofiya/INFO/locust.runners: Ramping to 400 users at a rate of 80.00 per second
+[2026-11-20 15:46:39,743] MacBook-Pro-Sofiya/INFO/locust.runners: All users spawned: {"ApiUser": 400} (400 total users)
+[2026-11-20 15:47:05,575] MacBook-Pro-Sofiya/INFO/locust.main: --run-time limit reached, shutting down
+[2026-11-20 15:47:05,626] MacBook-Pro-Sofiya/INFO/locust.main: Shutting down (exit code 0)
+Type     Name                                                                          # reqs      # fails |    Avg     Min     Max    Med |   req/s  failures/s
+--------|----------------------------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+POST     /records                                                                        9201     0(0.00%) |     10       1     237      4 |  307.88        0.00
+GET      /time                                                                          27253     0(0.00%) |      6       0     227      2 |  911.92        0.00
+--------|----------------------------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+         Aggregated                                                                     36454     0(0.00%) |      7       0     237      2 | 1219.80        0.00
+
+Response time percentiles (approximated)
+Type     Name                                                                                  50%    66%    75%    80%    90%    95%    98%    99%  99.9% 99.99%   100% # reqs
+--------|--------------------------------------------------------------------------------|--------|------|------|------|------|------|------|------|------|------|------|------
+POST     /records                                                                                4      5      7     10     24     43     71    100    230    240    240   9201
+GET      /time                                                                                   2      2      3      4     12     26     57     85    190    230    230  27253
+--------|--------------------------------------------------------------------------------|--------|------|------|------|------|------|------|------|------|------|------|------
+         Aggregated                                                                              2      3      4      6     15     32     60     91    200    240    240  36454
+

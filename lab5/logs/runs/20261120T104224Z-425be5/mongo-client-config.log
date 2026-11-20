@@ -1,0 +1,3 @@
+{'wtimeout': 2500, 'w': 'majority'}
+{'level': 'majority'}
+Primary()
