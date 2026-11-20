@@ -264,6 +264,8 @@ All application errors use JSON `{"error":"..."}`. Invalid input is 400; MongoDB
 
 MongoDB operations use a 4 s overall PyMongo budget. A failed pool acquisition/selection or write concern can finish earlier. nginx uses 1 s connect and 7 s send/read idle timeouts, at most 3 upstream tries and an 8 s upstream-retry budget; only safe/eligible retry conditions are enabled. Probes/integration HTTP requests use 12 s timeout. A successful response is an acknowledgement from the configured MongoDB concern; a timeout/503 can have an uncertain write outcome. The API makes no general exactly-once promise.
 
+With client-side operation timeout enabled, PyMongo derives the effective write timeout from the remaining operation budget; the configured 2.5 s write-concern timeout is not an additional independent deadline. End-to-end HTTP timings also include scheduling and response overhead, so the 4 s driver budget is not an exact 4.000 s HTTP guarantee. The live outage assertion is below the 12 s HTTP-client limit.
+
 The Gunicorn image has one process and four threads per API (three processes / twelve threads in total), no preloading, timeout 15 s, graceful timeout 5 s. MongoClient has maxPoolSize 40, waitQueueTimeoutMS 1000, retryWrites true. WiredTiger cache is explicitly 0.25 GiB per MongoDB node to fit alongside previous lab services on this local Docker VM. This is a local educational configuration, not a production capacity recommendation.
 
 ## 13. Failure and measurement semantics

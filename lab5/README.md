@@ -45,6 +45,8 @@ POST returns 201 after MongoDB acknowledges a majority write. GET returns 200 wi
 
 The API uses primary reads with majority read concern. It does not read from a local dictionary, cache user records or save them on container disk. PyMongo's overall operation timeout is 4 s; selection 3 s, connect 1 s, socket 4 s; write concern timeout 2.5 s. The client has one pool per process and bounded wait. nginx read/send timeout is 7 s with at most three eligible upstream tries; probes use 12 s HTTP timeouts. Retries of non-idempotent operations are not enabled in nginx, and MongoDB 503 is not hidden by proxy failover.
 
+With PyMongo's client-side operation timeout active, its remaining budget governs the effective write timeout rather than a separate 2.5 s deadline. End-to-end HTTP time can exceed the nominal driver budget because of scheduling/response overhead; the suite verifies that controlled-outage responses arrive before the 12 s HTTP timeout.
+
 ## Functional tests
 
 Use a separate environment; do not change Lab 4's environment:
@@ -64,6 +66,12 @@ The pinned test packages support the verified Python 3.9.6. These are real HTTP 
 # Optional bounded exploration beyond the three mandatory levels:
 .venv/bin/python scripts/run_suite.py --extended
 ```
+
+The selected submission also includes `scripts/run_supplement.py`: a distinct 1600-user diagnostic
+run preserving underlying transport exceptions, followed by an explicitly abrupt primary SIGKILL
+scenario. It uses its own unique run directory and `supplementary-results.json`; the required
+graceful-stop result remains unchanged. Run the supplement only after a completed main suite.
+Its controlled crash always restarts the same node and verifies topology/data retention.
 
 The suite performs functional tests, persistent-record inspection, API restart, a separate full MongoDB outage with POST/GET 503, normal load tests, api2 stop/start and an automatic primary election. It targets only project lab5 and restores controlled stops in finally blocks. A file lock prevents simultaneous suites. Each run writes `logs/runs/<unique-run-id>/`. Selected results are also copied to required `logs/` filenames; previous originals stay in their run directory. Runtime command output may be redirected to ignored `logs/live/`.
 
@@ -127,5 +135,18 @@ Require one PRIMARY and two SECONDARY, then verify a saved record ID through ngi
 `spec.md` v4 preserves R1-R31 from the previous specification as applicable/historical requirements, and appends R32-R50 for Lab 5. The current image implements `/time`, `/echo` and `/records`; RustFS/Redis endpoints remain in the separate unchanged Lab 4 deployment. `test_report.md` provides traceable cases, original load numbers, failure timelines, CAP interpretation, two prioritized recommendations and all four reflection answers.
 
 `screenshots/README.md` identifies image provenance and any unavailable captures. Browser views of archived logs are explicitly labelled as recorded evidence, never presented as a live terminal. Original machine-readable logs remain authoritative. `MANIFEST.sha256` verifies the submitted files and excludes itself.
+
+To regenerate the report and static chart from the selected completed run:
+
+```bash
+.venv/bin/python -m pip install -r requirements-report.txt
+.venv/bin/python scripts/verify_final.py
+.venv/bin/python scripts/analyze_load.py
+.venv/bin/python scripts/plot_results.py
+.venv/bin/python scripts/build_report.py
+.venv/bin/python scripts/build_evidence.py
+```
+
+Regenerating evidence pages does not recapture screenshots. Existing snapshots keep their original provenance. Refresh the manifest only after intentional updates to a submission.
 
 Primary references: [MongoDB elections](https://www.mongodb.com/docs/manual/core/replica-set-elections/), [PyMongo operation timeouts](https://pymongo.readthedocs.io/en/4.10.1/examples/timeouts.html), [nginx upstream retry](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_next_upstream), [Locust documentation](https://docs.locust.io/en/2.32.4/).
