@@ -1,0 +1,84 @@
+name: lab5
+
+x-mongo: &mongo
+  image: mongo:7
+  command: ["mongod", "--replSet", "rs0", "--bind_ip_all", "--wiredTigerCacheSizeGB", "0.25"]
+  networks: [database]
+  stop_grace_period: 5s
+  healthcheck:
+    test: ["CMD", "mongosh", "--quiet", "--eval", "quit(db.adminCommand({ping:1}).ok ? 0 : 1)"]
+    interval: 5s
+    timeout: 4s
+    retries: 40
+
+x-api: &api
+  build: ./app
+  image: lab5-api:local
+  environment:
+    MONGO_URI: mongodb://mongo1:27017,mongo2:27017,mongo3:27017/?replicaSet=rs0
+    MONGO_DB: lab5
+    PYTHONUNBUFFERED: "1"
+  networks: [frontend, database]
+  stop_grace_period: 8s
+  depends_on:
+    mongo-init:
+      condition: service_completed_successfully
+  healthcheck:
+    test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:5000/time',timeout=2)"]
+    interval: 5s
+    timeout: 3s
+    retries: 20
+
+services:
+  mongo1:
+    <<: *mongo
+    hostname: mongo1
+    volumes:
+      - mongo1-data:/data/db
+      - ./init-replica.js:/scripts/init-replica.js:ro
+  mongo2:
+    <<: *mongo
+    hostname: mongo2
+    volumes: ["mongo2-data:/data/db"]
+  mongo3:
+    <<: *mongo
+    hostname: mongo3
+    volumes: ["mongo3-data:/data/db"]
+  mongo-init:
+    image: mongo:7
+    entrypoint: ["mongosh", "--host", "mongo1:27017", "--quiet", "/scripts/init-replica.js"]
+    networks: [database]
+    volumes: ["./init-replica.js:/scripts/init-replica.js:ro"]
+    depends_on:
+      mongo1: {condition: service_healthy}
+      mongo2: {condition: service_healthy}
+      mongo3: {condition: service_healthy}
+    restart: "no"
+  api1:
+    <<: *api
+    hostname: api1
+  api2:
+    <<: *api
+    hostname: api2
+  api3:
+    <<: *api
+    hostname: api3
+  nginx:
+    image: nginx:1.27
+    ports: ["127.0.0.1:${LAB5_HTTP_PORT:-8080}:80"]
+    networks: [frontend]
+    volumes: ["./nginx.conf:/etc/nginx/nginx.conf:ro"]
+    depends_on:
+      api1: {condition: service_healthy}
+      api2: {condition: service_healthy}
+      api3: {condition: service_healthy}
+
+networks:
+  frontend:
+  database:
+    internal: true
+
+volumes:
+  mongo1-data:
+  mongo2-data:
+  mongo3-data:
