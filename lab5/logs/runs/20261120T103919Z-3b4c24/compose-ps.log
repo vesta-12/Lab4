@@ -1,0 +1,9 @@
+NAME                IMAGE            COMMAND                  SERVICE      CREATED         STATUS                     PORTS
+lab5-api1-1         lab5-api:local   "gunicorn --bind 0.0…"   api1         2 minutes ago   Up 2 minutes (healthy)     5000/tcp
+lab5-api2-1         lab5-api:local   "gunicorn --bind 0.0…"   api2         2 minutes ago   Up 2 minutes (healthy)     5000/tcp
+lab5-api3-1         lab5-api:local   "gunicorn --bind 0.0…"   api3         2 minutes ago   Up 2 minutes (healthy)     5000/tcp
+lab5-mongo-init-1   mongo:7          "mongosh --host mong…"   mongo-init   2 minutes ago   Exited (0) 2 minutes ago   
+lab5-mongo1-1       mongo:7          "docker-entrypoint.s…"   mongo1       2 minutes ago   Up 2 minutes (healthy)     27017/tcp
+lab5-mongo2-1       mongo:7          "docker-entrypoint.s…"   mongo2       2 minutes ago   Up 2 minutes (healthy)     27017/tcp
+lab5-mongo3-1       mongo:7          "docker-entrypoint.s…"   mongo3       2 minutes ago   Up 2 minutes (healthy)     27017/tcp
+lab5-nginx-1        nginx:1.27       "/docker-entrypoint.…"   nginx        2 minutes ago   Up 2 minutes               127.0.0.1:8080->80/tcp

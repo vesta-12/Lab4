@@ -1,0 +1,293 @@
+{
+  "verified_at_utc": "2026-11-20T11:44:05.165504+00:00",
+  "status": "PASS",
+  "branch": "lab5-nosql-fault-tolerance",
+  "protected_lab4_head": "462db1db5f91648f101cc3dc52412df39d681a85",
+  "original_files_preserved": 80,
+  "original_sha256": {
+    ".idea/.gitignore": "de3dcd3b67895aa24d01485c60e342e81e37ea1530859b0756519a00f1b6d700",
+    ".idea/Lab2_REST_Queues.iml": "f7962f5ab68323576922eee0a2992dc3bf2fd1a1a490b04edd19c4d696788ce8",
+    ".idea/inspectionProfiles/profiles_settings.xml": "6172c5997eeb3cd19c9ca2b5b97d6e2983cdd1fa60b2460d7bbb74055edcaa46",
+    ".idea/misc.xml": "30f806f163111e53ea6479f1deb6fcd1dca894b67dba8404de0d42c4ce618efb",
+    ".idea/modules.xml": "806676debbb35ffc498e10fbc81779e4e00f9f8cef7816ef1a0ed89c44dadae0",
+    ".idea/vcs.xml": "55768f1f84fb117f1d0fc383e180b5d0aa5e5e6584c8c4a2995c15b4237f0972",
+    "Lab3_Report_Serbina_Sofiya.docx": "7b107de0db4cd13a7f90156d4506e4b77434b9758d5ffac9464463bd6a2fa192",
+    "app/Dockerfile": "f451e41fb446e78d151da454bf88f007f2fe865764715954ebf8fc61d8e552cc",
+    "app/app.py": "052daf0f005628c25b7323d7c6c501ff1f895bde9bad731bce4de5f6221c99b8",
+    "app/requirements.txt": "b87aa5270772708aeaed24ad65681618c398f238e7b3bed393af852738243377",
+    "broker.py": "f685007614378acca34eea5a69ee738b0848661b9b06805b6809d3f39169bbc9",
+    "consumer.py": "142d5bae0b08269abbebc15f7336133814ba079402db2b572a49d336fadf7163",
+    "docker-compose.yml": "3c443a9de1745f76287da20a17f7aa2a4d448e492f723b31897e41bd10296ab1",
+    "k8s/deployment.yaml": "253672a35edf32a73d51ba686c957a7956592a72bb1849c6ad4ffaa99bf18cc8",
+    "k8s/service.yaml": "4977fef70ad772e39333dbaef98d27a2baff125e061f95e36b595002cbc7a5c4",
+    "lab4/.env.example": "85f50995946918bed2a53c10b37ac8a59a369d6859b978af04106f3ef0a8b9d9",
+    "lab4/MANIFEST.sha256": "dfba5aef1659042e3640da5f5fb1b89cf4d21de6d9c039e023dff44694ce9aa6",
+    "lab4/README.md": "19370a919713f5d3199a9a7176fe51d01ee574241bcf46523466ddb4a754b94b",
+    "lab4/app.py": "e0f440a58a98a7e2e6d90b2a2e8192faecc89439143adabd0274b5de5651ab6a",
+    "lab4/docker-compose.yml": "4f2eecbf596ff162c53760c60fdc988180309d10e377d8a1c3ab06d615946485",
+    "lab4/logs/E1-normal.log": "e52cbeba851fe7ae311019bec42f8b2a3b49ef54378b9080b37160f8ffe358c5",
+    "lab4/logs/E2-replica-behind.log": "4be3aa05fdf97457bd97602af0df4453fb1f6f1712a2a8c7beea63aecf2b92e9",
+    "lab4/logs/E3-read-own-write.log": "c6dc90d7b6d8c5270507f7583008c594005a042db585277cb02adc7d7d5fdd08",
+    "lab4/logs/E4-manual-failover.log": "4368ddd5ca681258c4fc89948eefa895b2184c35cd075e20bd9d0134f52dcb97",
+    "lab4/logs/additional-live-checks.log": "479f9434a9bc405bd8f4a53197008eff1760c62c47aa5b35829cc03c9e1c3c45",
+    "lab4/logs/api-storage.log": "ac4390e1b15ec4ef5d2187b5ffcb9e1a07cfc29f5306121f2ae4058d19c4a85d",
+    "lab4/logs/browser-evidence/01_file_created.html": "7a4d596a1a17b8354b7c81de799317cb67bc2d16799cfd0b1a6f2f86b8bdd758",
+    "lab4/logs/browser-evidence/02_file_read.html": "d778acaa5bcdf259b0b3008c1ab93515e9aa9cad74cc11959e9fe19926e79a2f",
+    "lab4/logs/browser-evidence/03_file_missing.html": "2b5254a751fe2d660ec3b770549cb4b9c705f42930466dbf1938ee74649b71d6",
+    "lab4/logs/browser-evidence/04_file_persistence.html": "9467deb34d7327e73680d434ce6bc681b2676c695d2c41171e669dd5cd6281ef",
+    "lab4/logs/browser-evidence/06_redis-primary.html": "8fcd9a74660586ae018c5d56cc011df73b56f8763d520179cdcf39dac8584606",
+    "lab4/logs/browser-evidence/07_redis-replica.html": "61d355b7e216ec0f7c693eecd464c64ad7a78219844fafc0f53a72e249ef5817",
+    "lab4/logs/browser-evidence/08_E1.html": "2855ba7aee04140460df6c393ccdd86930a3a4d7655f38b6abecddc5a7e1d57c",
+    "lab4/logs/browser-evidence/09_E2.html": "215d0519f441625c9802bbaa4b6ae66534bb9e7663bc320c8a46b1e7e15d21d4",
+    "lab4/logs/browser-evidence/10_E3.html": "c7c09ef67c6794d2bb84df75599b0b039beeb7e17a803150cff69eda1993866d",
+    "lab4/logs/browser-evidence/11_E4.html": "b8c7e268954011b9723465bae56da69e24120289f26d5a8ba5fd86925451c2b8",
+    "lab4/logs/browser-evidence/index.html": "347ca33038ed09a615b33baf33b85d6703d2c5b8d9d3a53bf53daef750bb8019",
+    "lab4/logs/dependency-install.log": "d8154c6b5b2585b97d77da380ff863e155b1a179cf232b1bd9a403021c748320",
+    "lab4/logs/final-service-check.log": "b5a4105c83e5aed2611dd850d79e86237c14e6ae1a0a895c31fc5227a36f2001",
+    "lab4/logs/flask-server.log": "8069df3ac4b32712fe7d78d3aedc21758e9038aea135743a488a24b5e5e59d32",
+    "lab4/logs/integration-run.log": "0b0a00bc9e550e9e43a15f1e8029313b5eda8696388e990c25add1807575b8ec",
+    "lab4/logs/original-files-preserved.json": "d6803c34e4287faa77c187d71697057acf21d60a0c0f91bc693a4595e6ee9d9c",
+    "lab4/logs/replication-status.log": "f973bd2b95fb3a2a55f508dd8088581ee8414a6aaedff29db645cfae14679b7f",
+    "lab4/logs/results.json": "0d58bcb59a682af61acc9ab27ca6d6690311fd789322771fdbfc52878bad4ce8",
+    "lab4/logs/run-environment.log": "56bd9afdcc77667ced6896f3623bcc215cd9e7daf124cb1894aac2c4895a24e8",
+    "lab4/logs/startup-diagnosis.log": "f73c0f52b801b517621d22ae951a2159e4b15cf4cc5155fb2a028d9d31caf006",
+    "lab4/logs/unit-tests.log": "734115a7440a8587b6dd4dfb8d5f7802068ccd0ffdf573308b94caeca1bd8150",
+    "lab4/logs/verified-python-packages.txt": "119db92ffa683230024c87c247323031c86e995793c405446bb4e1548f50dcd1",
+    "lab4/report-source.txt": "0f11175ea00324c08b6b553fcaf79ec7bba27c8902a6a3d529a713d8e8486910",
+    "lab4/report.pdf": "a51c2a8cee55af40799633f2c96d8f5dbbaebb4fd68faed78a07013cc238243e",
+    "lab4/requirements.txt": "564763dcf37bbb57593cab3d0411119a76d55a3e55ee64c6834443853131df8d",
+    "lab4/screenshots/01_file_created.jpg": "027ec9d459c5011733b368d64ab2f79098ec38c7558243c63e256a4524d181ee",
+    "lab4/screenshots/02_file_read.jpg": "1de265cebf58881cdb2a61226c0b89d6c9f21e2c0f70d49baafaca82a7470445",
+    "lab4/screenshots/03_file_missing.jpg": "ffd51555802f6daa74f9b7008b00cc760439de023ea55770700c91c8f68e8ba6",
+    "lab4/screenshots/04_file_persistence.jpg": "407ae3485fdbf7d155f2c5622a21120cc6be7eb894eff4cf812a6af77289c4e0",
+    "lab4/screenshots/05_rustfs_console.jpg": "88393dcf44dd81c1addf02197e70df755c483f8c966a50ef952a7243157424c4",
+    "lab4/screenshots/06_redis-primary.jpg": "22c7f111d65b501018ec8f2d69a182aea2169496dbb4fea1e6a0e21c081c9780",
+    "lab4/screenshots/07_redis-replica.jpg": "a930c57f3282ec98198be1558e7ab72ea0bf94c4f12ad788243acf1417208075",
+    "lab4/screenshots/08_E1.jpg": "ee0f18af64aa9d720d9b2d2420a2ecbe2bc17bd291c839860cff84311d5ddbdf",
+    "lab4/screenshots/09_E2.jpg": "3d827b6476ac41d660af3ebe8e314460e20ff2228085a537a7902f0d9dc5f4a5",
+    "lab4/screenshots/10_E3.jpg": "9a176d44bbb17afc7428294827aadb7bb4ccc0abb5be8d18b7b9caf38c97ed70",
+    "lab4/screenshots/11_E4.jpg": "6249c3cd2e4561d47540a2219fc92ce4614d87191930817d81ba2bccb8003a0a",
+    "lab4/screenshots/README.md": "eb47d0d61cc04b73ae1a59e0d4c35a779f8381cd25b44d36036fc78a78b8079d",
+    "lab4/scripts/build_evidence_pages.py": "b7f615ddd488c21db5a4ec554d980ce7141b29b51691e1042f3f94c092865781",
+    "lab4/scripts/check_boundaries.py": "5e79987b582bcb8b98aa809e51c8bddb0c166e25264e9da2fb6a8032f1e167b8",
+    "lab4/scripts/run_experiments.py": "e0433ad4bb9dcaba1b1a348d43f09a364779b7db75c3448e324b488ca104659f",
+    "lab4/spec.md": "3bd86b95a3a467067a0d96529130faf505a92d65bd730cda81302dd191f308a9",
+    "lab4/tests/test_api.py": "ebfa365dbc1f8912540a6534814624963f0d7bd64f84af10f1a6b1ee508c8748",
+    "main.py": "bec6b07c8dc4f5cca9a44b4d1ea001eb4bdc141a8f258929a81519b600905ea0",
+    "producer.py": "e4616daaf2c87743664af84ba2edc2fec2664975ba73b4d972783a2f85cdd464",
+    "screenshots/01_docker_build.png": "9472b130ba56392c57228d1762aebd6a104b260310832b49c9213188d461c9bd",
+    "screenshots/02_docker_responses.png": "d9058daeb7bb589b939e7a63486d08c1232ecf008b2915b4f4d10cd0bbd625e6",
+    "screenshots/03_docker_compose.png": "f6088cc1ddbcfdffa909c50811af2f6f90d9eb63cbb8813ebe51266c67116b3c",
+    "screenshots/04_kubernetes_pods.png": "848d007ae60bc285994e6376e3bfa0d52be1d58c724cfb1266a085753cff2bd3",
+    "screenshots/05_request_distribution.png": "0a2b7b2b45e67e481aea0f8930a03b0f1159fdf4f4563213b58cc8b2be38a6de",
+    "screenshots/06_fault_tolerance.png": "9caf425aceaf8b65a31fefe8be76758715af56a13624eb4e4f2ef32222932bc8",
+    "screenshots/06_self_healing.png": "621027dcc4dba48366b394a0d97a7b3a6f60b6c7773f573e8cca7dcf5f3c3a98",
+    "screenshots/07_scaling_5.png": "8df3d3d720ddfe8e1ca2bd577d8242ca07f15b1e9c6f7f190ae5d21d99ecb898",
+    "screenshots/08_scaling_3.png": "fd912ce375d783cb33eb889766c1560cb4428d4543f46f7da9bc728f2f8a21de",
+    "spec.md": "ad8033e06b1e8da62219b18ea4b36db062ad4fe28926a36307f17d8c86cf4309"
+  },
+  "members": [
+    {
+      "name": "mongo1:27017",
+      "state": "SECONDARY",
+      "health": 1
+    },
+    {
+      "name": "mongo2:27017",
+      "state": "PRIMARY",
+      "health": 1
+    },
+    {
+      "name": "mongo3:27017",
+      "state": "SECONDARY",
+      "health": 1
+    }
+  ],
+  "containers": [
+    {
+      "service": "mongo1",
+      "id": "d0451a962c7cc71ac7b47a966f4cd1fe42eda7e8c7c1347bbbb1ae02e729bab0",
+      "image_id": "sha256:41e8195b2791692695e1dc9bd21cd51d0a3af05fff8ace9304a5c1acf94f1ae1",
+      "hostname": "mongo1",
+      "ports": {},
+      "mounts": [
+        {
+          "Type": "volume",
+          "Name": "edcd5ddd6cd6653f94468da9e33550fee5c0d99c54b281e4c2a11c3462073ff0",
+          "Source": "/var/lib/docker/volumes/edcd5ddd6cd6653f94468da9e33550fee5c0d99c54b281e4c2a11c3462073ff0/_data",
+          "Destination": "/data/configdb",
+          "Driver": "local",
+          "Mode": "",
+          "RW": true,
+          "Propagation": ""
+        },
+        {
+          "Type": "volume",
+          "Name": "lab5_mongo1-data",
+          "Source": "/var/lib/docker/volumes/lab5_mongo1-data/_data",
+          "Destination": "/data/db",
+          "Driver": "local",
+          "Mode": "rw",
+          "RW": true,
+          "Propagation": ""
+        },
+        {
+          "Type": "bind",
+          "Source": "/host_mnt/Users/sofiyaserbina/Lab3_Docker_Kubernetes_Lab4/lab5/init-replica.js",
+          "Destination": "/scripts/init-replica.js",
+          "Mode": "ro",
+          "RW": false,
+          "Propagation": "rprivate"
+        }
+      ],
+      "state": "running",
+      "started_at": "2026-11-20T10:51:48.043866216Z"
+    },
+    {
+      "service": "mongo2",
+      "id": "fc8a7681208e3eb60a66e7084cee8aa7bf2f3e4a62a92ea0e34377e20d5d4a3c",
+      "image_id": "sha256:41e8195b2791692695e1dc9bd21cd51d0a3af05fff8ace9304a5c1acf94f1ae1",
+      "hostname": "mongo2",
+      "ports": {},
+      "mounts": [
+        {
+          "Type": "volume",
+          "Name": "3bb75bea6a0593e48cd223b56a50e6a76be5dd149fd74751bffc06ed9f7e7576",
+          "Source": "/var/lib/docker/volumes/3bb75bea6a0593e48cd223b56a50e6a76be5dd149fd74751bffc06ed9f7e7576/_data",
+          "Destination": "/data/configdb",
+          "Driver": "local",
+          "Mode": "",
+          "RW": true,
+          "Propagation": ""
+        },
+        {
+          "Type": "volume",
+          "Name": "lab5_mongo2-data",
+          "Source": "/var/lib/docker/volumes/lab5_mongo2-data/_data",
+          "Destination": "/data/db",
+          "Driver": "local",
+          "Mode": "rw",
+          "RW": true,
+          "Propagation": ""
+        }
+      ],
+      "state": "running",
+      "started_at": "2026-11-20T10:48:30.944669958Z"
+    },
+    {
+      "service": "mongo3",
+      "id": "aa705b9c2b7ca0ddba6fd27cf3a96d437e8d152b61d0edf5a5c550e221f78b66",
+      "image_id": "sha256:41e8195b2791692695e1dc9bd21cd51d0a3af05fff8ace9304a5c1acf94f1ae1",
+      "hostname": "mongo3",
+      "ports": {},
+      "mounts": [
+        {
+          "Type": "volume",
+          "Name": "4ea5baa70e0f64fb9639009dc746977e1c3b8e60a0043919c1c34acffcc33ffb",
+          "Source": "/var/lib/docker/volumes/4ea5baa70e0f64fb9639009dc746977e1c3b8e60a0043919c1c34acffcc33ffb/_data",
+          "Destination": "/data/configdb",
+          "Driver": "local",
+          "Mode": "",
+          "RW": true,
+          "Propagation": ""
+        },
+        {
+          "Type": "volume",
+          "Name": "lab5_mongo3-data",
+          "Source": "/var/lib/docker/volumes/lab5_mongo3-data/_data",
+          "Destination": "/data/db",
+          "Driver": "local",
+          "Mode": "rw",
+          "RW": true,
+          "Propagation": ""
+        }
+      ],
+      "state": "running",
+      "started_at": "2026-11-20T10:42:50.523021926Z"
+    },
+    {
+      "service": "api1",
+      "id": "a5759eee2f08c69b7bba85a4554e0c7624526de572b1312f0c926cefd13d8c83",
+      "image_id": "sha256:760c37e8565024e2de7599203dfa039f49ac8099ebe637c2607eee4aa836d262",
+      "hostname": "api1",
+      "ports": {},
+      "mounts": [],
+      "state": "running",
+      "started_at": "2026-11-20T10:42:30.024413055Z"
+    },
+    {
+      "service": "api2",
+      "id": "a9aa01072e16754e8874c26bd2ab15916c9108d725ae19f824eabd08d8f038f3",
+      "image_id": "sha256:760c37e8565024e2de7599203dfa039f49ac8099ebe637c2607eee4aa836d262",
+      "hostname": "api2",
+      "ports": {},
+      "mounts": [],
+      "state": "running",
+      "started_at": "2026-11-20T10:48:06.294020169Z"
+    },
+    {
+      "service": "api3",
+      "id": "3433b2c8970efbff358c58643629de65e5fc70dacb3ff462f1763da4f5655c68",
+      "image_id": "sha256:760c37e8565024e2de7599203dfa039f49ac8099ebe637c2607eee4aa836d262",
+      "hostname": "api3",
+      "ports": {},
+      "mounts": [],
+      "state": "running",
+      "started_at": "2026-11-20T10:36:54.386490969Z"
+    },
+    {
+      "service": "nginx",
+      "id": "f311e68da5da7a1cff88ee1bcd6da23cc1d01156d11763ddf671d8365a7bf83e",
+      "image_id": "sha256:6784fb0834aa7dbbe12e3d7471e69c290df3e6ba810dc38b34ae33d3c1c05f7d",
+      "hostname": "f311e68da5da",
+      "ports": {
+        "80/tcp": [
+          {
+            "HostIp": "127.0.0.1",
+            "HostPort": "8080"
+          }
+        ]
+      },
+      "mounts": [
+        {
+          "Type": "bind",
+          "Source": "/Users/sofiyaserbina/Lab3_Docker_Kubernetes_Lab4/lab5/nginx.conf",
+          "Destination": "/etc/nginx/nginx.conf",
+          "Mode": "ro",
+          "RW": false,
+          "Propagation": "rprivate"
+        }
+      ],
+      "state": "running",
+      "started_at": "2026-11-20T10:36:59.993187097Z"
+    }
+  ],
+  "http": [
+    {
+      "url": "http://127.0.0.1:8080/time",
+      "status": 200,
+      "body": {
+        "served_by": "api3",
+        "server_time": "2026-11-20 11:44:04.396307"
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8080/records/d2825021-1d22-4f65-9f43-1cdce9988244",
+      "status": 200,
+      "body": {
+        "id": "d2825021-1d22-4f65-9f43-1cdce9988244",
+        "served_by": "api2",
+        "text": "Persistent control 20261120T104224Z-425be5"
+      }
+    }
+  ],
+  "versions": {
+    "mongo1": "db version v7.0.48\nBuild Info: {\n    \"version\": \"7.0.48\",\n    \"gitVersion\": \"6937736f0539a5d4c8edb2970255b9369cb385a5\",\n    \"openSSLVersion\": \"OpenSSL 3.0.2 15 Mar 2022\",\n    \"modules\": [],\n    \"allocator\": \"tcmalloc\",\n    \"environment\": {\n        \"distmod\": \"ubuntu2204\",\n        \"distarch\": \"aarch64\",\n        \"target_arch\": \"aarch64\"\n    }\n}\n",
+    "nginx": "nginx version: nginx/1.27.5\n",
+    "api1": "3.12.16\n{'Flask': '3.1.2', 'pymongo': '4.10.1', 'gunicorn': '23.0.0'}\n"
+  },
+  "mongo_network_internal": true,
+  "mongo_api_ports_not_published": true,
+  "no_lab5_OOM_killed": true,
+  "acknowledged_control_record_retained": true
+}

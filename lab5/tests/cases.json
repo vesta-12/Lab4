@@ -1,0 +1,19 @@
+[
+  {"id":"TC01","requirements":"R1, R42","type":"functional","input":"GET /time through nginx","expected":"200; server_time and served_by from api1/api2/api3"},
+  {"id":"TC02","requirements":"R2, R3","type":"functional/negative","input":"POST /echo with message, then without it","expected":"200 echo; missing message 400"},
+  {"id":"TC03","requirements":"R33, R39","type":"functional","input":"POST /records with valid text","expected":"201; lowercase UUIDv4; text and served_by; Location"},
+  {"id":"TC04","requirements":"R34","type":"functional","input":"Create/read original Unicode text","expected":"201 then 200; exact id and Unicode text"},
+  {"id":"TC05","requirements":"R34","type":"negative","input":"GET a new nonexistent UUID","expected":"404; record not found"},
+  {"id":"TC06","requirements":"R35","type":"negative","input":"Malformed and uppercase IDs","expected":"400 JSON error"},
+  {"id":"TC07","requirements":"R36","type":"negative","input":"Missing, null, numeric, empty text; non-object JSON","expected":"400 for all invalid inputs"},
+  {"id":"TC08","requirements":"R36","type":"negative","input":"Malformed JSON and text/plain input","expected":"400"},
+  {"id":"TC09","requirements":"R37","type":"edge","input":"ASCII and Unicode text at exactly 65,536 UTF-8 bytes","expected":"201 then 200; exact original text"},
+  {"id":"TC10","requirements":"R37","type":"edge/negative","input":"ASCII and Unicode text above 65,536 bytes","expected":"400"},
+  {"id":"TC11","requirements":"R36, R37","type":"edge/negative","input":"Lone surrogate Unicode; JSON body above 512 KiB","expected":"400 JSON errors"},
+  {"id":"TC12","requirements":"R40, R42","type":"integration","input":"Create once; read twelve times through nginx","expected":"200 exact shared record from at least two API copies"},
+  {"id":"TC13","requirements":"R33","type":"functional","input":"Create identical text twice","expected":"Two distinct UUIDs"},
+  {"id":"TC14","requirements":"R38, R50","type":"failure","input":"Explicit full-database-outage scenario; POST and GET","expected":"503 in less than 12 s per request; /time 200; database restored"},
+  {"id":"TC15","requirements":"R40","type":"persistence","input":"Stop/start api1 after creating a control record","expected":"Original data remains readable through other copies and after restart"},
+  {"id":"TC16","requirements":"R43, R44, R50","type":"failure/load balancing","input":"Probe; stop api2 for about 20 s; 30 GET /time while stopped; restart","expected":"No api2 response during stop; at least two live API copies; api2 returns; actual errors quantified"},
+  {"id":"TC17","requirements":"R45, R46, R50","type":"failure/persistence","input":"Stop actual primary; probe and observe automatic election; restart old node","expected":"Different primary accepts writes before old node returns; control records retained; final 1 PRIMARY + 2 SECONDARY"}
+]

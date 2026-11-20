@@ -1,0 +1,18 @@
+Existing rs0 configuration verified; no reconfiguration performed.
+[
+  {
+    name: 'mongo1:27017',
+    state: 'SECONDARY',
+    health: 1
+  },
+  {
+    name: 'mongo2:27017',
+    state: 'PRIMARY',
+    health: 1
+  },
+  {
+    name: 'mongo3:27017',
+    state: 'SECONDARY',
+    health: 1
+  }
+]

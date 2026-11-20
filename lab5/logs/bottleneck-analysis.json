@@ -1,0 +1,94 @@
+{
+  "levels": [
+    {
+      "users": 10,
+      "request_count": 1902,
+      "failures": 0,
+      "transport_failures": 0,
+      "http_failures": 0,
+      "underlying_errors": {},
+      "rps": 31.80294566464288,
+      "p95_ms": 13.0,
+      "error_percent": 0.0
+    },
+    {
+      "users": 50,
+      "request_count": 9518,
+      "failures": 0,
+      "transport_failures": 0,
+      "http_failures": 0,
+      "underlying_errors": {},
+      "rps": 158.97011659057856,
+      "p95_ms": 7.0,
+      "error_percent": 0.0
+    },
+    {
+      "users": 100,
+      "request_count": 19001,
+      "failures": 0,
+      "transport_failures": 0,
+      "http_failures": 0,
+      "underlying_errors": {},
+      "rps": 317.6828635718215,
+      "p95_ms": 7.0,
+      "error_percent": 0.0
+    },
+    {
+      "users": 200,
+      "request_count": 18400,
+      "failures": 0,
+      "transport_failures": 0,
+      "http_failures": 0,
+      "underlying_errors": {},
+      "rps": 616.7089057600915,
+      "p95_ms": 8.0,
+      "error_percent": 0.0
+    },
+    {
+      "users": 400,
+      "request_count": 36454,
+      "failures": 0,
+      "transport_failures": 0,
+      "http_failures": 0,
+      "underlying_errors": {},
+      "rps": 1219.7953436685004,
+      "p95_ms": 32.0,
+      "error_percent": 0.0
+    },
+    {
+      "users": 800,
+      "request_count": 60415,
+      "failures": 236,
+      "transport_failures": 236,
+      "http_failures": 0,
+      "underlying_errors": {
+        "Expected HTTP 200": 178,
+        "Expected HTTP 201": 58
+      },
+      "rps": 2019.0776928526348,
+      "p95_ms": 190.0,
+      "error_percent": 0.3906314656956054
+    },
+    {
+      "users": 1600,
+      "request_count": 57107,
+      "failures": 3144,
+      "transport_failures": 3144,
+      "http_failures": 0,
+      "underlying_errors": {
+        "ConnectionError(MaxRetryError('HTTPConnectionPool(host=\\'127.0.0.1\\', port=8080): Max retries exceeded with url: /time (Caused by NewConnectionError(\"HTTPConnection(host=\\'127.0.0.1\\', port=8080): Failed to establish a new connection: [Errno 54] Connection reset by peer\"))'))": 32,
+        "ConnectionError(MaxRetryError('HTTPConnectionPool(host=\\'127.0.0.1\\', port=8080): Max retries exceeded with url: /records (Caused by NewConnectionError(\"HTTPConnection(host=\\'127.0.0.1\\', port=8080): Failed to establish a new connection: [Errno 54] Connection reset by peer\"))'))": 17,
+        "ConnectionError(ProtocolError('Connection aborted.', RemoteDisconnected('Remote end closed connection without response')))": 3095
+      },
+      "rps": 1874.4233727622998,
+      "p95_ms": 430.0,
+      "error_percent": 5.505454672807186
+    }
+  ],
+  "nginx_worker_connection_limit_messages": 0,
+  "nginx_worker_connection_limit_examples": [],
+  "throughput_change_800_to_1600_percent": -7.164376120958549,
+  "capacity_observation": "End-to-end saturation/degradation in the tested 800-1600 user range; not an isolated database-capacity claim",
+  "cause_assessment": "No nginx worker-connection-limit message was logged. Remote disconnect/reset errors establish an ingress/connection-path failure; shared generator/host/VM contention remains a hypothesis requiring isolation.",
+  "instrumentation_note": "The original 800-user run kept generic expected-status failure labels; status 0 is Locust no-response, not HTTP 0. The supplement preserved underlying transport exceptions."
+}

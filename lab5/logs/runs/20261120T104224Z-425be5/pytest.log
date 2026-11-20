@@ -1,0 +1,35 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.9.6, pytest-8.4.2, pluggy-1.6.0 -- /Users/sofiyaserbina/Lab3_Docker_Kubernetes_Lab4/lab5/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /Users/sofiyaserbina/Lab3_Docker_Kubernetes_Lab4/lab5
+collecting ... collected 20 items
+
+tests/test_api.py::test_TC01_time_served_by_R1_R42 PASSED                [  5%]
+tests/test_api.py::test_TC02_echo_legacy_R2_R3 PASSED                    [ 10%]
+tests/test_api.py::test_TC03_create_contract_R33_R39 PASSED              [ 15%]
+tests/test_api.py::test_TC04_read_original_R34 PASSED                    [ 20%]
+tests/test_api.py::test_TC05_missing_R34 PASSED                          [ 25%]
+tests/test_api.py::test_TC06_invalid_id_R35[invalid-id] PASSED           [ 30%]
+tests/test_api.py::test_TC06_invalid_id_R35[ABCDEF00-0000-4000-8000-000000000000] PASSED [ 35%]
+tests/test_api.py::test_TC07_invalid_input_R36[payload0] PASSED          [ 40%]
+tests/test_api.py::test_TC07_invalid_input_R36[payload1] PASSED          [ 45%]
+tests/test_api.py::test_TC07_invalid_input_R36[payload2] PASSED          [ 50%]
+tests/test_api.py::test_TC07_invalid_input_R36[payload3] PASSED          [ 55%]
+tests/test_api.py::test_TC07_invalid_input_R36[payload4] PASSED          [ 60%]
+tests/test_api.py::test_TC08_malformed_json_R36 PASSED                   [ 65%]
+tests/test_api.py::test_TC09_exact_limit_R37[ascii] PASSED               [ 70%]
+tests/test_api.py::test_TC09_exact_limit_R37[unicode] PASSED             [ 75%]
+tests/test_api.py::test_TC10_above_limit_R37[ascii] PASSED               [ 80%]
+tests/test_api.py::test_TC10_above_limit_R37[unicode] PASSED             [ 85%]
+tests/test_api.py::test_TC11_invalid_unicode_and_body_limit_R36_R37 PASSED [ 90%]
+tests/test_api.py::test_TC12_cross_replica_R40_R42 PASSED                [ 95%]
+tests/test_api.py::test_TC13_unique_ids_R33 PASSED                       [100%]
+
+=============================== warnings summary ===============================
+.venv/lib/python3.9/site-packages/urllib3/__init__.py:35
+  /Users/sofiyaserbina/Lab3_Docker_Kubernetes_Lab4/lab5/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+    warnings.warn(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+- generated xml file: /Users/sofiyaserbina/Lab3_Docker_Kubernetes_Lab4/lab5/logs/runs/20261120T104224Z-425be5/pytest.xml -
+======================== 20 passed, 1 warning in 0.13s =========================

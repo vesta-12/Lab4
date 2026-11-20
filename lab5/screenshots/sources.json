@@ -1,0 +1,18 @@
+{
+  "provenance": "Genuine browser captures of explicitly labelled archived real-run evidence; no generated terminal imagery",
+  "run_id": "20261120T104224Z-425be5",
+  "expected_screenshots": [
+    "01_replica_set.jpg",
+    "02_compose.jpg",
+    "03_records.jpg",
+    "04_distribution.jpg",
+    "05_api_down.jpg",
+    "06_load_10.jpg",
+    "07_load_50.jpg",
+    "08_load_100.jpg",
+    "09_primary_down.jpg",
+    "10_final_roles.jpg",
+    "11_primary_crash.jpg",
+    "12_live_record.jpg"
+  ]
+}

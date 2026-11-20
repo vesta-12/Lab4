@@ -1,0 +1,5 @@
+Method,Name,Error,Occurrences
+GET,/time,RemoteDisconnected('Remote end closed connection without response'),2341
+POST,/records,"ConnectionResetError(54, 'Connection reset by peer')",17
+GET,/time,"ConnectionResetError(54, 'Connection reset by peer')",32
+POST,/records,RemoteDisconnected('Remote end closed connection without response'),754

@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "check": "Standalone copy without .git accepts the explicit lab5 project",
+  "command_output": {
+    "root": "/Users/sofiyaserbina/Documents/Codex/2026-11-17/codex-complete-laboratory-work-4-data/work/lab5-portability/lab5",
+    "compose_project": "lab5",
+    "git_checkout": false,
+    "branch": null
+  }
+}

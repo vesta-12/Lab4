@@ -1,0 +1,12 @@
+<!doctype html><meta charset="utf-8"><title>Docker Compose services</title>
+<style>body{font:16px Arial,sans-serif;margin:24px;color:#111;max-width:1200px}h1{font-size:24px;margin:0 0 12px}p{line-height:1.4}pre{font:14px/1.35 monospace;white-space:pre-wrap;overflow-wrap:anywhere}table{border-collapse:collapse;width:100%;font-size:15px}td,th{border:1px solid #aaa;padding:9px;text-align:left}th{background:#f3f3f3}</style>
+<h1>Docker Compose services</h1><p><strong>Archived log evidence.</strong> Actual Lab 5 measurements, not a live terminal or a replay. Original logs and CSV files accompany the submission.</p><p>Run: 20261120T104224Z-425be5. Timestamps: UTC (Almaty = UTC+5).<br>Source: logs/compose-ps.log</p><pre>NAME                IMAGE            COMMAND                  SERVICE      CREATED         STATUS                     PORTS
+lab5-api1-1         lab5-api:local   &quot;gunicorn --bind 0.0…&quot;   api1         5 minutes ago   Up 3 minutes (healthy)     5000/tcp
+lab5-api2-1         lab5-api:local   &quot;gunicorn --bind 0.0…&quot;   api2         5 minutes ago   Up 5 minutes (healthy)     5000/tcp
+lab5-api3-1         lab5-api:local   &quot;gunicorn --bind 0.0…&quot;   api3         5 minutes ago   Up 5 minutes (healthy)     5000/tcp
+lab5-mongo-init-1   mongo:7          &quot;mongosh --host mong…&quot;   mongo-init   5 minutes ago   Exited (0) 3 minutes ago   
+lab5-mongo1-1       mongo:7          &quot;docker-entrypoint.s…&quot;   mongo1       5 minutes ago   Up 2 minutes (healthy)     27017/tcp
+lab5-mongo2-1       mongo:7          &quot;docker-entrypoint.s…&quot;   mongo2       5 minutes ago   Up 2 minutes (healthy)     27017/tcp
+lab5-mongo3-1       mongo:7          &quot;docker-entrypoint.s…&quot;   mongo3       5 minutes ago   Up 2 minutes (healthy)     27017/tcp
+lab5-nginx-1        nginx:1.27       &quot;/docker-entrypoint.…&quot;   nginx        5 minutes ago   Up 5 minutes               127.0.0.1:8080-&gt;80/tcp
+</pre>

@@ -9,3 +9,9 @@ lab4/logs/*.pid
 lab4/logs/*.lock
 
 lab4/logs/flask-live.log
+
+lab5/.env
+lab5/.venv/
+lab5/logs/live/
+lab5/logs/*.pid
+lab5/logs/*.lock

@@ -1,0 +1,434 @@
+{
+  "run_id": "20261120T103919Z-3b4c24",
+  "started_utc": "2026-11-20T10:39:19.173370+00:00",
+  "base_url": "http://127.0.0.1:8080",
+  "complete": false,
+  "evidence_type": "Live HTTP through nginx and Docker containers; no mocks",
+  "targets_declared_in_spec": {
+    "p95_ms": 1000,
+    "error_percent": 1
+  },
+  "baseline_distribution": {
+    "label": "baseline",
+    "requests": 30,
+    "counts": {
+      "api2": 10,
+      "api3": 10,
+      "api1": 10
+    },
+    "errors": 0,
+    "rows": [
+      {
+        "index": 1,
+        "status": 200,
+        "body": {
+          "served_by": "api2",
+          "server_time": "2026-11-20 10:39:20.712961"
+        },
+        "timestamp": "2026-11-20T10:39:20.716479+00:00"
+      },
+      {
+        "index": 2,
+        "status": 200,
+        "body": {
+          "served_by": "api3",
+          "server_time": "2026-11-20 10:39:20.718585"
+        },
+        "timestamp": "2026-11-20T10:39:20.721859+00:00"
+      },
+      {
+        "index": 3,
+        "status": 200,
+        "body": {
+          "served_by": "api1",
+          "server_time": "2026-11-20 10:39:20.725659"
+        },
+        "timestamp": "2026-11-20T10:39:20.729206+00:00"
+      },
+      {
+        "index": 4,
+        "status": 200,
+        "body": {
+          "served_by": "api2",
+          "server_time": "2026-11-20 10:39:20.731708"
+        },
+        "timestamp": "2026-11-20T10:39:20.734735+00:00"
+      },
+      {
+        "index": 5,
+        "status": 200,
+        "body": {
+          "served_by": "api3",
+          "server_time": "2026-11-20 10:39:20.736246"
+        },
+        "timestamp": "2026-11-20T10:39:20.740009+00:00"
+      },
+      {
+        "index": 6,
+        "status": 200,
+        "body": {
+          "served_by": "api1",
+          "server_time": "2026-11-20 10:39:20.740636"
+        },
+        "timestamp": "2026-11-20T10:39:20.743109+00:00"
+      },
+      {
+        "index": 7,
+        "status": 200,
+        "body": {
+          "served_by": "api2",
+          "server_time": "2026-11-20 10:39:20.741974"
+        },
+        "timestamp": "2026-11-20T10:39:20.745040+00:00"
+      },
+      {
+        "index": 8,
+        "status": 200,
+        "body": {
+          "served_by": "api3",
+          "server_time": "2026-11-20 10:39:20.744315"
+        },
+        "timestamp": "2026-11-20T10:39:20.746893+00:00"
+      },
+      {
+        "index": 9,
+        "status": 200,
+        "body": {
+          "served_by": "api1",
+          "server_time": "2026-11-20 10:39:20.746224"
+        },
+        "timestamp": "2026-11-20T10:39:20.748755+00:00"
+      },
+      {
+        "index": 10,
+        "status": 200,
+        "body": {
+          "served_by": "api2",
+          "server_time": "2026-11-20 10:39:20.748069"
+        },
+        "timestamp": "2026-11-20T10:39:20.750556+00:00"
+      },
+      {
+        "index": 11,
+        "status": 200,
+        "body": {
+          "served_by": "api3",
+          "server_time": "2026-11-20 10:39:20.749897"
+        },
+        "timestamp": "2026-11-20T10:39:20.752421+00:00"
+      },
+      {
+        "index": 12,
+        "status": 200,
+        "body": {
+          "served_by": "api1",
+          "server_time": "2026-11-20 10:39:20.751728"
+        },
+        "timestamp": "2026-11-20T10:39:20.754322+00:00"
+      },
+      {
+        "index": 13,
+        "status": 200,
+        "body": {
+          "served_by": "api2",
+          "server_time": "2026-11-20 10:39:20.753241"
+        },
+        "timestamp": "2026-11-20T10:39:20.755415+00:00"
+      },
+      {
+        "index": 14,
+        "status": 200,
+        "body": {
+          "served_by": "api3",
+          "server_time": "2026-11-20 10:39:20.754231"
+        },
+        "timestamp": "2026-11-20T10:39:20.756380+00:00"
+      },
+      {
+        "index": 15,
+        "status": 200,
+        "body": {
+          "served_by": "api1",
+          "server_time": "2026-11-20 10:39:20.755165"
+        },
+        "timestamp": "2026-11-20T10:39:20.757302+00:00"
+      },
+      {
+        "index": 16,
+        "status": 200,
+        "body": {
+          "served_by": "api2",
+          "server_time": "2026-11-20 10:39:20.756485"
+        },
+        "timestamp": "2026-11-20T10:39:20.759391+00:00"
+      },
+      {
+        "index": 17,
+        "status": 200,
+        "body": {
+          "served_by": "api3",
+          "server_time": "2026-11-20 10:39:20.758721"
+        },
+        "timestamp": "2026-11-20T10:39:20.761230+00:00"
+      },
+      {
+        "index": 18,
+        "status": 200,
+        "body": {
+          "served_by": "api1",
+          "server_time": "2026-11-20 10:39:20.760456"
+        },
+        "timestamp": "2026-11-20T10:39:20.762951+00:00"
+      },
+      {
+        "index": 19,
+        "status": 200,
+        "body": {
+          "served_by": "api2",
+          "server_time": "2026-11-20 10:39:20.762159"
+        },
+        "timestamp": "2026-11-20T10:39:20.764692+00:00"
+      },
+      {
+        "index": 20,
+        "status": 200,
+        "body": {
+          "served_by": "api3",
+          "server_time": "2026-11-20 10:39:20.764378"
+        },
+        "timestamp": "2026-11-20T10:39:20.766761+00:00"
+      },
+      {
+        "index": 21,
+        "status": 200,
+        "body": {
+          "served_by": "api1",
+          "server_time": "2026-11-20 10:39:20.765517"
+        },
+        "timestamp": "2026-11-20T10:39:20.768003+00:00"
+      },
+      {
+        "index": 22,
+        "status": 200,
+        "body": {
+          "served_by": "api2",
+          "server_time": "2026-11-20 10:39:20.767227"
+        },
+        "timestamp": "2026-11-20T10:39:20.769728+00:00"
+      },
+      {
+        "index": 23,
+        "status": 200,
+        "body": {
+          "served_by": "api3",
+          "server_time": "2026-11-20 10:39:20.768955"
+        },
+        "timestamp": "2026-11-20T10:39:20.771426+00:00"
+      },
+      {
+        "index": 24,
+        "status": 200,
+        "body": {
+          "served_by": "api1",
+          "server_time": "2026-11-20 10:39:20.770629"
+        },
+        "timestamp": "2026-11-20T10:39:20.773099+00:00"
+      },
+      {
+        "index": 25,
+        "status": 200,
+        "body": {
+          "served_by": "api2",
+          "server_time": "2026-11-20 10:39:20.772285"
+        },
+        "timestamp": "2026-11-20T10:39:20.775156+00:00"
+      },
+      {
+        "index": 26,
+        "status": 200,
+        "body": {
+          "served_by": "api3",
+          "server_time": "2026-11-20 10:39:20.774160"
+        },
+        "timestamp": "2026-11-20T10:39:20.776369+00:00"
+      },
+      {
+        "index": 27,
+        "status": 200,
+        "body": {
+          "served_by": "api1",
+          "server_time": "2026-11-20 10:39:20.775638"
+        },
+        "timestamp": "2026-11-20T10:39:20.778112+00:00"
+      },
+      {
+        "index": 28,
+        "status": 200,
+        "body": {
+          "served_by": "api2",
+          "server_time": "2026-11-20 10:39:20.777351"
+        },
+        "timestamp": "2026-11-20T10:39:20.779659+00:00"
+      },
+      {
+        "index": 29,
+        "status": 200,
+        "body": {
+          "served_by": "api3",
+          "server_time": "2026-11-20 10:39:20.778431"
+        },
+        "timestamp": "2026-11-20T10:39:20.780900+00:00"
+      },
+      {
+        "index": 30,
+        "status": 200,
+        "body": {
+          "served_by": "api1",
+          "server_time": "2026-11-20 10:39:20.780174"
+        },
+        "timestamp": "2026-11-20T10:39:20.782671+00:00"
+      }
+    ]
+  },
+  "functional": {
+    "passed": 20,
+    "failed": 0,
+    "cases": [
+      {
+        "test": "tests/test_api.py::test_TC01_time_served_by_R1_R42",
+        "outcome": "passed",
+        "seconds": 0.009257292,
+        "error": null
+      },
+      {
+        "test": "tests/test_api.py::test_TC02_echo_legacy_R2_R3",
+        "outcome": "passed",
+        "seconds": 0.017760709000000013,
+        "error": null
+      },
+      {
+        "test": "tests/test_api.py::test_TC03_create_contract_R33_R39",
+        "outcome": "passed",
+        "seconds": 0.11043537499999997,
+        "error": null
+      },
+      {
+        "test": "tests/test_api.py::test_TC04_read_original_R34",
+        "outcome": "passed",
+        "seconds": 0.091655875,
+        "error": null
+      },
+      {
+        "test": "tests/test_api.py::test_TC05_missing_R34",
+        "outcome": "passed",
+        "seconds": 0.0038835830000000238,
+        "error": null
+      },
+      {
+        "test": "tests/test_api.py::test_TC06_invalid_id_R35[invalid-id]",
+        "outcome": "passed",
+        "seconds": 0.0032652080000000194,
+        "error": null
+      },
+      {
+        "test": "tests/test_api.py::test_TC06_invalid_id_R35[ABCDEF00-0000-4000-8000-000000000000]",
+        "outcome": "passed",
+        "seconds": 0.0017957089999999787,
+        "error": null
+      },
+      {
+        "test": "tests/test_api.py::test_TC07_invalid_input_R36[payload0]",
+        "outcome": "passed",
+        "seconds": 0.001711041999999996,
+        "error": null
+      },
+      {
+        "test": "tests/test_api.py::test_TC07_invalid_input_R36[payload1]",
+        "outcome": "passed",
+        "seconds": 0.002003167000000028,
+        "error": null
+      },
+      {
+        "test": "tests/test_api.py::test_TC07_invalid_input_R36[payload2]",
+        "outcome": "passed",
+        "seconds": 0.00213562500000003,
+        "error": null
+      },
+      {
+        "test": "tests/test_api.py::test_TC07_invalid_input_R36[payload3]",
+        "outcome": "passed",
+        "seconds": 0.0020252080000000006,
+        "error": null
+      },
+      {
+        "test": "tests/test_api.py::test_TC07_invalid_input_R36[payload4]",
+        "outcome": "passed",
+        "seconds": 0.002009333000000002,
+        "error": null
+      },
+      {
+        "test": "tests/test_api.py::test_TC08_malformed_json_R36",
+        "outcome": "passed",
+        "seconds": 0.004199000000000008,
+        "error": null
+      },
+      {
+        "test": "tests/test_api.py::test_TC09_exact_limit_R37[ascii]",
+        "outcome": "passed",
+        "seconds": 0.016840332999999985,
+        "error": null
+      },
+      {
+        "test": "tests/test_api.py::test_TC09_exact_limit_R37[unicode]",
+        "outcome": "passed",
+        "seconds": 0.028334291999999983,
+        "error": null
+      },
+      {
+        "test": "tests/test_api.py::test_TC10_above_limit_R37[ascii]",
+        "outcome": "passed",
+        "seconds": 0.0048320830000000425,
+        "error": null
+      },
+      {
+        "test": "tests/test_api.py::test_TC10_above_limit_R37[unicode]",
+        "outcome": "passed",
+        "seconds": 0.005308791000000035,
+        "error": null
+      },
+      {
+        "test": "tests/test_api.py::test_TC11_invalid_unicode_and_body_limit_R36_R37",
+        "outcome": "passed",
+        "seconds": 0.011430250000000086,
+        "error": null
+      },
+      {
+        "test": "tests/test_api.py::test_TC12_cross_replica_R40_R42",
+        "outcome": "passed",
+        "seconds": 0.027351832999999992,
+        "error": null
+      },
+      {
+        "test": "tests/test_api.py::test_TC13_unique_ids_R33",
+        "outcome": "passed",
+        "seconds": 0.0184553340000001,
+        "error": null
+      }
+    ]
+  },
+  "control_record": {
+    "id": "87785d18-93ad-48a2-b0fa-a204430aee3f",
+    "served_by": "api2",
+    "text": "Persistent control 20261120T103919Z-3b4c24"
+  },
+  "api_restart_persistence": "PASS",
+  "full_database_outage": {
+    "write_status": 503,
+    "read_status": 503,
+    "write_seconds": 4.52301,
+    "read_seconds": 4.391339
+  },
+  "load": [],
+  "error": "AssertionError: (1912, {'Type': '', 'Name': 'Aggregated', 'Request Count': '1896', 'Failure Count': '0', 'Median Response Time': '5', 'Average Response Time': '5.690852579113924', 'Min Response Time': '1.1979999999987', 'Max Response Time': '31.007083000005764', 'Average Content Size': '73.66772151898734', 'Requests/s': '32.00249581144357', 'Failures/s': '0.0', '50%': '5', '66%': '6', '75%': '7', '80%': '8', '90%': '11', '95%': '13', '98%': '17', '99%': '20', '99.9%': '31', '99.99%': '31', '100%': '31'})",
+  "failed_at_utc": "2026-11-20T10:40:58.008487+00:00"
+}
